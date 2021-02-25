@@ -14,15 +14,19 @@ class RegisterViewModel @Inject constructor(private val registerPresenter : Regi
 
     object NavigateSuccessEvent : OneShotEvent
     class NavigateFailureEvent(val errorMessage: String) : OneShotEvent
+    object InputFailureEvent : OneShotEvent
 
-    fun saveUser(email:String,password: String) = execute {
-        val result = registerPresenter.saveUser(email,password)
+    fun saveUser(email:String,password: String,username : String) = execute {
+        if(email.isNullOrEmpty() || password.isNullOrEmpty() || username.isNullOrEmpty()){
+            //TODO make this better
+            postEvent(InputFailureEvent)
+        }
+        val result = registerPresenter.saveUser(email,password,username)
         if (result){
             postEvent(NavigateSuccessEvent)
         }
         else{
            postEvent(NavigateFailureEvent("Registration failed please try again"))
         }
-        viewState = RegisterReady(registerPresenter.getData())
     }
 }

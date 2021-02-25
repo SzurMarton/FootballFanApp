@@ -11,7 +11,7 @@ class RegisterPresenter @Inject constructor(
         ""
     }
 
-    suspend fun saveUser(email : String, password : String) : Boolean = withIOContext {
-        registerInteractor.saveUser(email.trim{it <= ' '},password.trim{it <= ' '})
+    suspend fun saveUser(email : String, password : String,username:String) : Boolean = withIOContext {
+        registerInteractor.saveUser(email.trim{it <= ' '},password.trim{it <= ' '},username.trim{it <= ' '})
     }
 }

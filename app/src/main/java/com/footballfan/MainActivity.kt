@@ -3,6 +3,7 @@ package com.footballfan
 import android.os.Bundle
 import co.zsmb.rainbowcake.navigation.SimpleNavActivity
 import com.footballfan.ui.BlankFragment
+import com.footballfan.ui.login.LoginFragment
 import com.footballfan.ui.register.RegisterFragment
 
 class MainActivity : SimpleNavActivity() {
@@ -12,7 +13,7 @@ class MainActivity : SimpleNavActivity() {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            navigator.add(RegisterFragment())
+            navigator.add(LoginFragment())
         }
     }
 
