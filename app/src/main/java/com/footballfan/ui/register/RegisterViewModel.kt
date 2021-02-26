@@ -3,6 +3,7 @@ package com.footballfan.ui.register
 import co.zsmb.rainbowcake.base.OneShotEvent
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import com.footballfan.ui.BlankReady
+import com.google.android.gms.tasks.OnCompleteListener
 import javax.inject.Inject
 
 class RegisterViewModel @Inject constructor(private val registerPresenter : RegisterPresenter)
@@ -21,12 +22,12 @@ class RegisterViewModel @Inject constructor(private val registerPresenter : Regi
             //TODO make this better
             postEvent(InputFailureEvent)
         }
-        val result = registerPresenter.saveUser(email,password,username)
-        if (result){
-            postEvent(NavigateSuccessEvent)
-        }
-        else{
-           postEvent(NavigateFailureEvent("Registration failed please try again"))
-        }
+        registerPresenter.saveUser(email,password,username).addOnCompleteListener { task ->
+            if (task.isSuccessful){
+                postEvent(NavigateSuccessEvent)
+            } else{
+                postEvent(NavigateFailureEvent("Registration failed please try again"))
+            } }
+
     }
 }

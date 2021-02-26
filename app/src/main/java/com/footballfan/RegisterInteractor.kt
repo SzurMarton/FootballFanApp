@@ -1,27 +1,37 @@
 package com.footballfan
 
+import android.content.ContentValues.TAG
+import android.util.Log
+import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.Tasks.await
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.awaitAll
 import javax.inject.Inject
 
 
 class RegisterInteractor @Inject constructor(){
-    suspend fun saveUser(email : String, password: String,username: String) : Boolean {
-        //return FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).isSuccessful
+    suspend fun saveUser(email : String, password: String,username: String) : Task<AuthResult> {
+        //var res =  FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).isSuccessful
         //TODO fix return for events, return boolean correctly after creation and db save
         //TODO save user to database
-        /*
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).addOnCompletelistener{
-                task ->
-                if (task.issuccesfull) return true
-            }
-         */
-        //val uid =  FirebaseAuth.getInstance().uid ?: ""
-        //FirebaseDatabase.getInstance().reference.setValue(User(uid,username))
-        //val uid = "CqBwq4pUsuQ1erL8n4taTvXpwNd2"
-        //FirebaseDatabase.getInstance().getReference("useres/$uid").setValue(User(uid,"asd"))
-        return true
+          var res = false
+         return FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInWithEmail:success")
+                    val uid =  FirebaseAuth.getInstance().uid ?: ""
+                    FirebaseDatabase.getInstance().reference.setValue(User(uid,username))
+
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "signInWithEmail:failure", task.exception)
+
+                }
+              return@addOnCompleteListener
+          }
     }
 
     data class User(
@@ -29,3 +39,5 @@ class RegisterInteractor @Inject constructor(){
             val username: String
     )
 }
+
+
