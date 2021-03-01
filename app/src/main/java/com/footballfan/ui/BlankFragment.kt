@@ -6,7 +6,7 @@ import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import com.footballfan.R
 
-class BlankFragment : RainbowCakeFragment<BlankViewState, BlankViewModel>() {
+class BlankFragment : RainbowCakeFragment<BlankViewState, BlankViewModel>(){
 
     override fun provideViewModel() = getViewModelFromFactory()
     override fun getViewResource() = R.layout.fragment_blank
