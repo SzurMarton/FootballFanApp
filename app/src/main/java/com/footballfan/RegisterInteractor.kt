@@ -14,10 +14,6 @@ import javax.inject.Inject
 
 class RegisterInteractor @Inject constructor(){
     suspend fun saveUser(email : String, password: String,username: String) : Task<AuthResult> {
-        //var res =  FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).isSuccessful
-        //TODO fix return for events, return boolean correctly after creation and db save
-        //TODO save user to database
-          var res = false
          return FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
