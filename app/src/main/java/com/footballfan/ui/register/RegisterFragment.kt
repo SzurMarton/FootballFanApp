@@ -30,7 +30,6 @@ class RegisterFragment : RainbowCakeFragment<RegisterViewState,RegisterViewModel
         }
     }
 
-
     override fun onEvent(event: OneShotEvent) {
         when(event){
             is RegisterViewModel.InputFailureEvent -> Toast.makeText(activity,"Wrong input",Toast.LENGTH_SHORT).show()
