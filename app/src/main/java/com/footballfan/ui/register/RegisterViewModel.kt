@@ -8,12 +8,8 @@ import com.google.android.gms.tasks.OnCompleteListener
 import javax.inject.Inject
 
 class RegisterViewModel @Inject constructor(private val registerPresenter : RegisterPresenter)
-    :  RainbowCakeViewModel<RegisterViewState>(Loading)
+    :  RainbowCakeViewModel<RegisterViewState>(ViewReady)
 {
-    fun load() = execute {
-        viewState = RegisterReady(registerPresenter.getData())
-    }
-
     object NavigateSuccessEvent : OneShotEvent
     class NavigateFailureEvent(val errorMessage: String) : OneShotEvent
     object InputFailureEvent : OneShotEvent

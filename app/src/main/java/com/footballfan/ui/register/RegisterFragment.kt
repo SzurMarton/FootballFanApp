@@ -10,6 +10,7 @@ import co.zsmb.rainbowcake.navigation.navigator
 import com.footballfan.R
 import com.footballfan.ui.BlankFragment
 import com.footballfan.ui.BlankViewState
+import com.footballfan.ui.register.ViewReady
 import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.android.synthetic.main.fragment_register.etEmailAddress
 import kotlinx.android.synthetic.main.fragment_register.etPassword
@@ -29,11 +30,6 @@ class RegisterFragment : RainbowCakeFragment<RegisterViewState,RegisterViewModel
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        viewModel.load()
-    }
 
     override fun onEvent(event: OneShotEvent) {
         when(event){
@@ -44,6 +40,8 @@ class RegisterFragment : RainbowCakeFragment<RegisterViewState,RegisterViewModel
     }
 
     override fun render(viewState: RegisterViewState) {
-        // TODO Render state what to do whit this?
+        when(viewState){
+            ViewReady -> {}
+        }
     }
 }

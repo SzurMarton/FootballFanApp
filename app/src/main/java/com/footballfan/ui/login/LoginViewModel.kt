@@ -12,6 +12,7 @@ class LoginViewModel @Inject constructor(private val loginPresenter: LoginPresen
     class LoginFailedEvent(val errorMessages:String) : OneShotEvent
 
     fun login(email:String,password: String) = execute {
+        //TODO input check
         loginPresenter.login(email,password).addOnCompleteListener{task ->
             if (task.isSuccessful){
                 postEvent(LoginSuccessEvent)
