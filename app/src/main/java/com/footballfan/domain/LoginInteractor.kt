@@ -1,4 +1,4 @@
-package com.footballfan
+package com.footballfan.domain
 
 import android.content.ContentValues
 import android.util.Log

@@ -1,8 +1,7 @@
 package com.footballfan.ui.login
 
-import android.provider.ContactsContract
 import co.zsmb.rainbowcake.withIOContext
-import com.footballfan.LoginInteractor
+import com.footballfan.domain.LoginInteractor
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import javax.inject.Inject

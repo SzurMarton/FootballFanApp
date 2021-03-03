@@ -5,6 +5,7 @@ import co.zsmb.rainbowcake.dagger.ViewModelKey
 import com.footballfan.ui.BlankViewModel
 import com.footballfan.ui.login.LoginViewModel
 import com.footballfan.ui.main.MainViewModel
+import com.footballfan.ui.news.NewsViewModel
 import com.footballfan.ui.register.RegisterViewModel
 import dagger.Binds
 import dagger.Module
@@ -33,4 +34,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MainViewModel::class)
     abstract fun bindMainViewModel(mainViewModel: MainViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(NewsViewModel::class)
+    abstract fun bindNewsViewModel(newsViewModel: NewsViewModel) : ViewModel
 }

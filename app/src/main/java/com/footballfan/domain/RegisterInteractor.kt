@@ -1,14 +1,11 @@
-package com.footballfan
+package com.footballfan.domain
 
 import android.content.ContentValues.TAG
 import android.util.Log
 import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.Tasks.await
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.awaitAll
 import javax.inject.Inject
 
 
@@ -19,7 +16,7 @@ class RegisterInteractor @Inject constructor(){
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithEmail:success")
                     val uid =  FirebaseAuth.getInstance().uid ?: ""
-                    FirebaseDatabase.getInstance().reference.setValue(User(uid,username))
+                    FirebaseDatabase.getInstance().reference.setValue(User(uid, username))
 
                 } else {
                     // If sign in fails, display a message to the user.

@@ -1,7 +1,7 @@
 package com.footballfan.ui.register
 
 import co.zsmb.rainbowcake.withIOContext
-import com.footballfan.RegisterInteractor
+import com.footballfan.domain.RegisterInteractor
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import javax.inject.Inject
