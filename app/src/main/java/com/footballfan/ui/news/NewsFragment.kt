@@ -1,5 +1,6 @@
 package com.footballfan.ui.news
 
+import android.util.Log
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import co.zsmb.rainbowcake.extensions.exhaustive
@@ -14,7 +15,14 @@ class NewsFragment : RainbowCakeFragment<NewsViewState,NewsViewModel>() {
     override fun render(viewState: NewsViewState) {
         when(viewState){
             Loading -> {
+                //viewFlipperMain.displayedChild = 0
+            }
+            is NewsListReady -> {
+                texttest.text =  viewState.news?.size.toString()
                 viewFlipperMain.displayedChild = 0
+            }
+            NetworkError -> {
+                Log.d("asd","Network errror")
             }
         }.exhaustive
     }

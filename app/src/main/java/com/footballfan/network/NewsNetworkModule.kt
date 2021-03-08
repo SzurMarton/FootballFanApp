@@ -21,6 +21,7 @@ class NewsNetworkModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient):Retrofit = Retrofit.Builder()
             .baseUrl("https://newsapi.org/")
+            //TODO url to buildconfigfield
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()

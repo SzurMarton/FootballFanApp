@@ -4,6 +4,6 @@ sealed class NewsViewState
 
 object Loading : NewsViewState()
 
-//data class NewsListReady(val news: List<NewsItem>) : NewsViewState()
+data class NewsListReady(val news: List<NewsPresenter.NewsItem>?) : NewsViewState()
 
-//object NetworkError: NewsViewState()
+object NetworkError: NewsViewState()
