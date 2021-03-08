@@ -15,11 +15,11 @@ class NewsFragment : RainbowCakeFragment<NewsViewState,NewsViewModel>() {
     override fun render(viewState: NewsViewState) {
         when(viewState){
             Loading -> {
-                //viewFlipperMain.displayedChild = 0
+                viewFlipperMain.displayedChild = 0
             }
             is NewsListReady -> {
                 texttest.text =  viewState.news?.size.toString()
-                viewFlipperMain.displayedChild = 0
+                viewFlipperMain.displayedChild = 1
             }
             NetworkError -> {
                 Log.d("asd","Network errror")
