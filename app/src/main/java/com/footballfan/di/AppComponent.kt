@@ -2,7 +2,7 @@ package com.footballfan.di
 
 import co.zsmb.rainbowcake.dagger.RainbowCakeComponent
 import co.zsmb.rainbowcake.dagger.RainbowCakeModule
-import com.footballfan.network.NewsNetworkModule
+import com.footballfan.data.network.NewsnetworkModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -12,7 +12,7 @@ import javax.inject.Singleton
         RainbowCakeModule::class,
         ApplicationModule::class,
         ViewModelModule::class,
-        NewsNetworkModule::class
+        NewsnetworkModule::class
     ]
 )
 

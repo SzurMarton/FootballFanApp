@@ -1,9 +1,13 @@
 package com.footballfan.ui.news
 
+import com.footballfan.ui.news.model.UiNewsData
+
 sealed class NewsViewState
+
+object Initial : NewsViewState()
 
 object Loading : NewsViewState()
 
-data class NewsListReady(val news: List<NewsPresenter.NewsItem>?) : NewsViewState()
+data class NewsListReady(val newsData: UiNewsData) : NewsViewState()
 
-object NetworkError: NewsViewState()
+object Error : NewsViewState()

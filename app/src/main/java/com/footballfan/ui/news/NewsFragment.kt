@@ -1,30 +1,31 @@
 package com.footballfan.ui.news
 
-import android.util.Log
+import android.os.Bundle
+import android.view.View
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
-import co.zsmb.rainbowcake.extensions.exhaustive
 import com.footballfan.R
-import com.footballfan.ui.main.ViewReady
 import kotlinx.android.synthetic.main.fragment_news.*
 
-class NewsFragment : RainbowCakeFragment<NewsViewState,NewsViewModel>() {
-    override fun provideViewModel(): NewsViewModel = getViewModelFromFactory()
-    override fun getViewResource(): Int = R.layout.fragment_news
+class NewsFragment : RainbowCakeFragment<NewsViewState, NewsViewModel>(){
+    override fun getViewResource() = R.layout.fragment_news
+    override fun provideViewModel() = getViewModelFromFactory()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.load()
+    }
 
     override fun render(viewState: NewsViewState) {
         when(viewState){
-            Loading -> {
-                viewFlipperMain.displayedChild = 0
-            }
-            is NewsListReady -> {
-                texttest.text =  viewState.news?.size.toString()
-                viewFlipperMain.displayedChild = 1
-            }
-            NetworkError -> {
-                Log.d("asd","Network errror")
-            }
-        }.exhaustive
+            is Loading -> textnews.text = "Loading"
+            is NewsListReady -> textnews.text = viewState.newsData.articles?.size.toString()
+            is Error -> textnews.text = "Error"
+        }
     }
 
 }
