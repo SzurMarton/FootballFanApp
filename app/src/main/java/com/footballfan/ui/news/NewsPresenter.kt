@@ -22,6 +22,8 @@ class NewsPresenter @Inject constructor(private val newsInteractor: NewsInteract
             articles = articles?.map { UiNews(
                 author = it.author ?: "",
                 title = it.title ?: "",
+                description = it.description ?: "",
+                urlToImage = it.urlToImage ?: "",
                 content = it.content ?: ""
             )
             })

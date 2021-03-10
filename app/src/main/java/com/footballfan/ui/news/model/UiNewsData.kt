@@ -6,4 +6,8 @@ data class UiNewsData (
             UiNews>?
 )
 
-data class UiNews(val author: String,val title:String,val content: String)
+data class UiNews(val author: String,
+                  val title: String,
+                  val description: String,
+                  val urlToImage: String,
+                  val content: String)
