@@ -9,6 +9,7 @@ import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import co.zsmb.rainbowcake.navigation.navigator
 import com.footballfan.R
 import com.footballfan.ui.BlankFragment
+import com.footballfan.ui.deatilnews.DetailNewsFragment
 import com.footballfan.ui.news.model.UiNews
 import com.footballfan.ui.news.model.UiNewsData
 import kotlinx.android.synthetic.main.fragment_news.*
@@ -46,7 +47,7 @@ class NewsFragment : RainbowCakeFragment<NewsViewState, NewsViewModel>(), NewsAd
     }
 
     override fun onNewsClicked(news: UiNews) {
-        navigator?.add(BlankFragment().)
+        navigator?.add(DetailNewsFragment.newInstance(news.title,news.content,news.urlToImage))
         //TODO switch to details with the clicked news
     }
 

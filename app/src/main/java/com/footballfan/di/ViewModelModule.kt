@@ -3,6 +3,7 @@ package com.footballfan.di
 import androidx.lifecycle.ViewModel
 import co.zsmb.rainbowcake.dagger.ViewModelKey
 import com.footballfan.ui.BlankViewModel
+import com.footballfan.ui.deatilnews.DetailNewsViewModel
 import com.footballfan.ui.login.LoginViewModel
 import com.footballfan.ui.main.MainViewModel
 import com.footballfan.ui.news.NewsViewModel
@@ -39,4 +40,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(NewsViewModel::class)
     abstract fun bindNewsViewModel(newsViewModel: NewsViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailNewsViewModel::class)
+    abstract fun bindDetailNewsViewModel(detailNewsViewModel: DetailNewsViewModel) : ViewModel
 }
