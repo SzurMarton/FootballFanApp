@@ -6,21 +6,23 @@ import android.view.View
 import android.widget.Toast
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
+import co.zsmb.rainbowcake.navigation.navigator
 import com.footballfan.R
+import com.footballfan.ui.BlankFragment
 import com.footballfan.ui.news.model.UiNews
 import com.footballfan.ui.news.model.UiNewsData
 import kotlinx.android.synthetic.main.fragment_news.*
 
-class NewsFragment : RainbowCakeFragment<NewsViewState, NewsViewModel>(){
+class NewsFragment : RainbowCakeFragment<NewsViewState, NewsViewModel>(), NewsAdapter.Listener{
     override fun getViewResource() = R.layout.fragment_news
     override fun provideViewModel() = getViewModelFromFactory()
 
     private lateinit var newsAdapter: NewsAdapter
-   // private var news : List<UiNews>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         newsAdapter = NewsAdapter()
+        newsAdapter.listener = this
         NewsRecyclerView.adapter = newsAdapter
     }
 
@@ -41,6 +43,11 @@ class NewsFragment : RainbowCakeFragment<NewsViewState, NewsViewModel>(){
                 Log.d("asd","errrorrr")
             }
         }
+    }
+
+    override fun onNewsClicked(news: UiNews) {
+        navigator?.add(BlankFragment().)
+        //TODO switch to details with the clicked news
     }
 
 }

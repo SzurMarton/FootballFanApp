@@ -10,11 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.footballfan.R
 import com.footballfan.ui.news.model.UiNews
-import com.footballfan.ui.news.model.UiNewsData
 import kotlinx.android.synthetic.main.row_newsitem.view.*
 
 class NewsAdapter : ListAdapter<UiNews, NewsAdapter.NewsViewHolder>(NewsComparator) {
-
+    var listener: Listener? =null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.row_newsitem, parent, false)
@@ -25,7 +24,7 @@ class NewsAdapter : ListAdapter<UiNews, NewsAdapter.NewsViewHolder>(NewsComparat
         val news = getItem(position)
         holder.news = news
         holder.title.text = news.title
-        holder.author.text = news.author
+        holder.description.text = news.description
         Glide.with(holder.imageView)
                 .load(news.urlToImage)
                 .into(holder.imageView)
@@ -35,8 +34,18 @@ class NewsAdapter : ListAdapter<UiNews, NewsAdapter.NewsViewHolder>(NewsComparat
     inner class NewsViewHolder(newsView: View) : RecyclerView.ViewHolder(newsView) {
         val title: TextView = newsView.newsTitle
         val imageView: ImageView = newsView.newsImage
-        val author: TextView = newsView.newsAuthor
-
+        val description: TextView = newsView.newsDescription
+        //val cardView: CardView = newsView.cardView
         var news: UiNews? = null
+
+        init {
+            newsView.setOnClickListener {
+                news?.let { listener?.onNewsClicked(it) }
+            }
+        }
+    }
+
+    interface Listener{
+        fun onNewsClicked(news: UiNews)
     }
 }
