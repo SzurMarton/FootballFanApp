@@ -8,7 +8,7 @@ import javax.inject.Inject
 class NewsDatasource @Inject constructor(private val newsApi :  NewsApi){
     suspend fun getNews() : NetworkResponse<DomainNewsData> =
         executeNetworkCall {
-            newsApi.getNews("bitcoin","96b83721612e4f62ad4f1b5fa8a15cfc").let {
+            newsApi.getNews("soccer","96b83721612e4f62ad4f1b5fa8a15cfc").let {
                 DomainNewsData(
                     status = it.status,
                     totalResults = it.totalResults,
