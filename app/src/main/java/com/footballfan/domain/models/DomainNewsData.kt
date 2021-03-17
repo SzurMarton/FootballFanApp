@@ -1,6 +1,6 @@
 package com.footballfan.domain.models
 
-import com.footballfan.data.network.model.News
+import com.footballfan.data.network.news.model.News
 
 data class DomainNewsData(val status:String?, val totalResults:Int?, val articles: List<News>?)
 

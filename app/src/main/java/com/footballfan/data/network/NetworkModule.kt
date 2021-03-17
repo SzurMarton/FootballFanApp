@@ -1,5 +1,6 @@
 package com.footballfan.data.network
 
+import com.footballfan.data.network.news.NewsApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -21,7 +22,9 @@ class NewsnetworkModule {
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             // .baseUrl(BuildConfig.BASE_URL)
-            .baseUrl("https://newsapi.org/")
+                //https://v3.football.api-sports.io/
+            //.baseUrl("https://newsapi.org/")
+                .baseUrl("https://v3.football.api-sports.io/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
