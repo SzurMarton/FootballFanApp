@@ -1,5 +1,6 @@
 package com.footballfan.data.network
 
+import com.footballfan.data.network.football.FootballApi
 import com.footballfan.data.network.news.NewsApi
 import dagger.Module
 import dagger.Provides
@@ -10,7 +11,7 @@ import javax.inject.Singleton
 
 @Module
 class NewsnetworkModule {
-
+    //TODO fix typo NetworkModule
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
@@ -34,5 +35,11 @@ class NewsnetworkModule {
     @Singleton
     fun provideNewsApi(retrofit: Retrofit): NewsApi {
         return retrofit.create(NewsApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFootballApi(retrofit: Retrofit): FootballApi{
+        return retrofit.create(FootballApi::class.java)
     }
 }

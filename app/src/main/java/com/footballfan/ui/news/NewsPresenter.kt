@@ -28,4 +28,6 @@ class NewsPresenter @Inject constructor(private val newsInteractor: NewsInteract
             )
             })
     }
+
+
 }

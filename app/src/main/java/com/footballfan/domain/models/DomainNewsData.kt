@@ -4,6 +4,7 @@ import com.footballfan.data.network.news.model.News
 
 data class DomainNewsData(val status:String?, val totalResults:Int?, val articles: List<News>?)
 
+//TODO fix wrong class
 data class News(val source: Source, val author:String?,
                 val title: String?, val description: String?,
                 val url: String?, val urlToImage: String?,

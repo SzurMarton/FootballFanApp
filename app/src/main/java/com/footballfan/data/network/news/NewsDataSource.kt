@@ -5,7 +5,7 @@ import com.footballfan.networkutil.NetworkResponse
 import com.footballfan.networkutil.executeNetworkCall
 import javax.inject.Inject
 
-class NewsDatasource @Inject constructor(private val newsApi : NewsApi){
+class NewsDataSource @Inject constructor(private val newsApi : NewsApi){
     suspend fun getNews() : NetworkResponse<DomainNewsData> =
         executeNetworkCall {
             newsApi.getNews("soccer","96b83721612e4f62ad4f1b5fa8a15cfc").let {

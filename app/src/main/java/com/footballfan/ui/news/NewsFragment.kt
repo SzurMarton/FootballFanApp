@@ -48,7 +48,6 @@ class NewsFragment : RainbowCakeFragment<NewsViewState, NewsViewModel>(), NewsAd
 
     override fun onNewsClicked(news: UiNews) {
         navigator?.add(DetailNewsFragment.newInstance(news.title,news.content,news.urlToImage))
-        //TODO switch to details with the clicked news
     }
 
 }

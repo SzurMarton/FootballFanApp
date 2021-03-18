@@ -32,7 +32,7 @@ class MainFragment : RainbowCakeFragment<MainViewState,MainViewModel>() {
 
     private fun initViewPager2WithFragments(view: View){
         view.viewpager.adapter = MainAdapter(childFragmentManager,lifecycle)
-        var names:Array<String> = arrayOf(getString(R.string.mainTabLeagues),"2","3")
+        var names:Array<String> = arrayOf(getString(R.string.mainTabLeagues),"News","3")
         TabLayoutMediator(view.tablayout, view.viewpager){
             tab, position ->
             tab.text = names[position]
