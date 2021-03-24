@@ -1,6 +1,6 @@
 package com.footballfan.ui.leaguelist.model
 
-data class LeagueUiData(val leagues: List<LeagueData>?)
+data class LeagueUiData(var leagues: List<LeagueData>?)
 
 data class LeagueData(
     val id :Int?,
