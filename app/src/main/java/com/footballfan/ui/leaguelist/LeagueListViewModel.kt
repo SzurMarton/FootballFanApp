@@ -12,7 +12,6 @@ class LeagueListViewModel @Inject constructor(
 ) : RainbowCakeViewModel<LeagueListViewState>(Initial){
     private var leagueList :LeagueUiData? = null
 
-    class ListChangedEvent(val leagueData: LeagueUiData?) : OneShotEvent
 
     fun load() = execute {
         viewState = Loading
@@ -22,9 +21,4 @@ class LeagueListViewModel @Inject constructor(
     }
 
 
-    fun filterLeagueList(filter: String?){
-        if (filter != null)
-            leagueList?.leagues?.filter { it.name!!.contains(filter) }
-        ListChangedEvent(leagueList)
-    }
 }

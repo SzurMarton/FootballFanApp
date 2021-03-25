@@ -11,6 +11,7 @@ import co.zsmb.rainbowcake.navigation.navigator
 import com.footballfan.R
 import com.footballfan.ui.BlankFragment
 import com.footballfan.ui.leaguelist.model.LeagueData
+import com.footballfan.ui.leaguelist.model.LeagueUiData
 import kotlinx.android.synthetic.main.fragment_leaguelist.*
 import kotlinx.android.synthetic.main.fragment_news.*
 
@@ -18,6 +19,7 @@ class LeagueListFragment : RainbowCakeFragment<LeagueListViewState,LeagueListVie
     override fun provideViewModel() = getViewModelFromFactory()
     override fun getViewResource() = R.layout.fragment_leaguelist
     private lateinit var leagueAdapter: LeagueAdapter
+    private var leagues:LeagueUiData? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -26,12 +28,18 @@ class LeagueListFragment : RainbowCakeFragment<LeagueListViewState,LeagueListVie
         leagueRecyclerView.adapter = leagueAdapter
         leagueSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
+                return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                viewModel.filterLeagueList(newText)
-                return false
+                var a = leagues
+                Log.d("asd",a?.leagues?.size.toString())
+                if (newText != null) {
+                    a?.leagues = a?.leagues?.filter { it.name!!.toLowerCase().contains(newText.toLowerCase()) }?.toList()
+                    Log.d("asd",a?.leagues?.size.toString())
+                    leagueAdapter.submitList(a?.leagues)
+                }
+                return true
             }
 
         })
@@ -46,6 +54,7 @@ class LeagueListFragment : RainbowCakeFragment<LeagueListViewState,LeagueListVie
         when(viewState){
             is Loading -> viewFlipperLeague.displayedChild = 0
             is LeagueListReady -> {
+                leagues = viewState.leagueData
                 leagueAdapter.submitList(viewState.leagueData.leagues)
                 viewFlipperLeague.displayedChild = 1
             }
@@ -55,13 +64,6 @@ class LeagueListFragment : RainbowCakeFragment<LeagueListViewState,LeagueListVie
 
     override fun onLeagueClicked(league: LeagueData) {
         navigator?.add(BlankFragment())
-    }
-
-    override fun onEvent(event: OneShotEvent){
-        when(event){
-            is LeagueListViewModel.ListChangedEvent -> {leagueAdapter.submitList(event.leagueData?.leagues)
-            }
-        }
     }
 
 
