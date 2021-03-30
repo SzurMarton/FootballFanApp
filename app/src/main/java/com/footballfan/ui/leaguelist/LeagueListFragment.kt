@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
 import co.zsmb.rainbowcake.base.OneShotEvent
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
@@ -15,34 +16,32 @@ import com.footballfan.ui.leaguelist.model.LeagueUiData
 import kotlinx.android.synthetic.main.fragment_leaguelist.*
 import kotlinx.android.synthetic.main.fragment_news.*
 
-class LeagueListFragment : RainbowCakeFragment<LeagueListViewState,LeagueListViewModel>(), LeagueAdapter.Listener{
+class LeagueListFragment : RainbowCakeFragment<LeagueListViewState,LeagueListViewModel>(), ListAdapter.OnLeagueSelectedListener{
     override fun provideViewModel() = getViewModelFromFactory()
     override fun getViewResource() = R.layout.fragment_leaguelist
-    private lateinit var leagueAdapter: LeagueAdapter
-    private var leagues:LeagueUiData? = null
+    private lateinit var leagueAdapter: ListAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        leagueAdapter = LeagueAdapter()
-        leagueAdapter.listener = this
-        leagueRecyclerView.adapter = leagueAdapter
-        leagueSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        initRecyclerView()
+
+        leagueSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
+                return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                var a = leagues
-                Log.d("asd",a?.leagues?.size.toString())
-                if (newText != null) {
-                    a?.leagues = a?.leagues?.filter { it.name!!.toLowerCase().contains(newText.toLowerCase()) }?.toList()
-                    Log.d("asd",a?.leagues?.size.toString())
-                    leagueAdapter.submitList(a?.leagues)
-                }
-                return true
+                leagueAdapter.filter.filter(newText)
+                return false
             }
 
         })
+    }
+
+    private fun initRecyclerView() {
+        leagueRecyclerView.layoutManager = LinearLayoutManager(activity)
+        leagueAdapter = ListAdapter(this)
+        leagueRecyclerView.adapter = leagueAdapter
     }
 
     override fun onStart() {
@@ -54,17 +53,23 @@ class LeagueListFragment : RainbowCakeFragment<LeagueListViewState,LeagueListVie
         when(viewState){
             is Loading -> viewFlipperLeague.displayedChild = 0
             is LeagueListReady -> {
-                leagues = viewState.leagueData
-                leagueAdapter.submitList(viewState.leagueData.leagues)
+                var leauges = viewState.leagueData.leagues
+                if(leagueAdapter.itemCount == 0){
+                    if (leauges != null) {
+                        for (i in leauges.indices){
+                            leagueAdapter.addLeague(leauges[i])
+                        }
+                    }
                 viewFlipperLeague.displayedChild = 1
+                }
             }
             is Error -> viewFlipperMain.displayedChild = 2
         }
     }
 
-    override fun onLeagueClicked(league: LeagueData) {
+    override fun onLeagueSelected(league: LeagueData?) {
         navigator?.add(BlankFragment())
     }
-
-
 }
+
+
