@@ -16,7 +16,8 @@ class LeagueListViewModel @Inject constructor(
     fun load() = execute {
         viewState = Loading
         //val leagueData = leagueListPresenter.getLeagues()
-        leagueList = leagueListPresenter.getLeagues()
+        //TODO get season from the user with choose season functionality
+        leagueList = leagueListPresenter.getLeagues(2020)
         viewState = leagueList?.let { LeagueListReady(it) } ?: Error
     }
 

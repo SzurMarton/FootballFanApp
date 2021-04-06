@@ -9,9 +9,9 @@ import com.footballfan.networkutil.executeNetworkCall
 import javax.inject.Inject
 
 class FootballDataSource @Inject constructor(private val footballApi: FootballApi){
-    suspend fun getLeagues() : NetworkResponse<DomainLeagueData> =
+    suspend fun getLeagues(season: Int) : NetworkResponse<DomainLeagueData> =
             executeNetworkCall{
-                footballApi.getLeagues(2020).let { it ->
+                footballApi.getLeagues(season).let { it ->
                     DomainLeagueData(
                         leagues = it.response
                     )

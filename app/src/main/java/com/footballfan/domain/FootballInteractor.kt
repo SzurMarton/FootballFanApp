@@ -11,8 +11,8 @@ import javax.inject.Inject
 class FootballInteractor @Inject constructor(
     private val footballDataSource: FootballDataSource
 ){
-    suspend fun getLeagues() : DataTransferResponse<DomainLeagueData> {
-        return when(val response = footballDataSource.getLeagues()){
+    suspend fun getLeagues(season: Int) : DataTransferResponse<DomainLeagueData> {
+        return when(val response = footballDataSource.getLeagues(season)){
             is NetworkResult -> {
                 DataTransferSuccess(response.result)
             }

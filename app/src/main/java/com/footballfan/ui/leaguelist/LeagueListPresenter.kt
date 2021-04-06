@@ -11,8 +11,8 @@ import javax.inject.Inject
 class LeagueListPresenter @Inject constructor(
     private val footballInteractor : FootballInteractor
 ){
-    suspend fun getLeagues() : LeagueUiData? = withIOContext {
-        when (val response = footballInteractor.getLeagues()){
+    suspend fun getLeagues(season: Int) : LeagueUiData? = withIOContext {
+        when (val response = footballInteractor.getLeagues(season)){
             is SomeResult -> response.result.toLeagueUiData()
             else -> null
     }
