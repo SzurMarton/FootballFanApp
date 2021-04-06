@@ -4,20 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.viewpager2.widget.ViewPager2
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import com.footballfan.R
-import com.footballfan.ui.main.ViewReady
-import com.google.android.material.tabs.TabLayout
+import com.footballfan.ui.BlankFragment
+import com.footballfan.ui.ViewPagerAdapter
+import com.footballfan.ui.leaguelist.LeagueListFragment
+import com.footballfan.ui.news.NewsFragment
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main.view.*
 
 class MainFragment : RainbowCakeFragment<MainViewState,MainViewModel>() {
     override fun provideViewModel(): MainViewModel = getViewModelFromFactory()
-    override fun getViewResource(): Int = R.layout.activity_main
-    private var v : View? = null
+   // override fun getViewResource(): Int = R.layout.activity_main
+    override fun getViewResource(): Int = R.layout.fragment_main
     override fun render(viewState: MainViewState) {
         when(viewState){
             ViewReady -> {}
@@ -31,8 +31,10 @@ class MainFragment : RainbowCakeFragment<MainViewState,MainViewModel>() {
     }
 
     private fun initViewPager2WithFragments(view: View){
-        view.viewpager.adapter = MainAdapter(childFragmentManager,lifecycle)
-        var names:Array<String> = arrayOf(getString(R.string.mainTabLeagues),"News","3")
+        val adapter = ViewPagerAdapter(childFragmentManager, lifecycle)
+        adapter.fragments = arrayListOf(LeagueListFragment(), NewsFragment(), BlankFragment())
+        view.viewpager.adapter = adapter
+        val names:Array<String> = arrayOf(getString(R.string.mainTabLeagues),getString(R.string.mainTabNews),getString(R.string.mainTabForum))
         TabLayoutMediator(view.tablayout, view.viewpager){
             tab, position ->
             tab.text = names[position]

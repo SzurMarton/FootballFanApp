@@ -4,4 +4,6 @@
     <string name="loginFailed">Login failed try again!</string>
     <string name="registrationFailed">Registration failed please try again</string>
     <string name="mainTabLeagues">Leagues</string>
+    <string name="mainTabNews">News</string>
+    <string name="mainTabForum">Forum</string>
 </resources>

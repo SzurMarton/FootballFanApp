@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import co.zsmb.rainbowcake.dagger.ViewModelKey
 import com.footballfan.ui.BlankViewModel
 import com.footballfan.ui.deatilnews.DetailNewsViewModel
+import com.footballfan.ui.leaguedetailmain.DetailMainViewModel
 import com.footballfan.ui.leaguelist.LeagueListViewModel
 import com.footballfan.ui.login.LoginViewModel
 import com.footballfan.ui.main.MainViewModel
@@ -51,4 +52,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(LeagueListViewModel::class)
     abstract fun bindLeagueListViewModel(leagueListViewModel: LeagueListViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailMainViewModel::class)
+    abstract fun bindDetailMainViewModel(deatailMainViewModel: DetailMainViewModel) : ViewModel
 }
