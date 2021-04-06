@@ -18,7 +18,7 @@ class MainActivity : SimpleNavActivity() {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            navigator.add(DetailMainFragment())
+            navigator.add(MainFragment())
         }
     }
 

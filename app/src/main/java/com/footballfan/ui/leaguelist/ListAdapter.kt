@@ -52,7 +52,8 @@ class ListAdapter(private val listener: OnLeagueSelectedListener?) : RecyclerVie
         var item : LeagueData? = null
 
         init {
-            itemView.setOnClickListener { listener?.onLeagueSelected(item) }
+            itemView.setOnClickListener {
+                listener?.onLeagueSelected(item) }
         }
     }
 

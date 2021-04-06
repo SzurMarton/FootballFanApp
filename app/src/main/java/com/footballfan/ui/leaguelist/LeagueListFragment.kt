@@ -11,6 +11,7 @@ import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import co.zsmb.rainbowcake.navigation.navigator
 import com.footballfan.R
 import com.footballfan.ui.BlankFragment
+import com.footballfan.ui.leaguedetailmain.DetailMainFragment
 import com.footballfan.ui.leaguelist.model.LeagueData
 import com.footballfan.ui.leaguelist.model.LeagueUiData
 import kotlinx.android.synthetic.main.fragment_leaguelist.*
@@ -68,7 +69,8 @@ class LeagueListFragment : RainbowCakeFragment<LeagueListViewState,LeagueListVie
     }
 
     override fun onLeagueSelected(league: LeagueData?) {
-        navigator?.add(BlankFragment())
+        Log.d("asd",league?.id.toString())
+        navigator?.add(DetailMainFragment.newInstance(league?.id.toString()))
     }
 }
 
