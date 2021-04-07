@@ -1,4 +1,4 @@
-package com.footballfan.domain.models
+package com.footballfan.domain.models.news
 
 import com.footballfan.data.network.news.model.News
 

@@ -2,7 +2,7 @@ package com.footballfan.ui.news
 
 import co.zsmb.rainbowcake.withIOContext
 import com.footballfan.domain.NewsInteractor
-import com.footballfan.domain.models.DomainNewsData
+import com.footballfan.domain.models.news.DomainNewsData
 import com.footballfan.networkutil.SomeResult
 import com.footballfan.ui.news.model.UiNews
 import com.footballfan.ui.news.model.UiNewsData

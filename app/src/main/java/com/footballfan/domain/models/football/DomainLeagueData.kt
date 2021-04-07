@@ -1,23 +1,12 @@
-package com.footballfan.data.network.football
+package com.footballfan.domain.models.football
 
+import com.footballfan.data.network.football.models.ResponseObject
 
-data class LeagueResult(val get: String?,
-                        val parameters: Parameters,
-                        val errors: List<Error>? ,
-                        val results: Int?,
-                        val paging: Paging?,
-                        val response: List<ResponseObject>)
+data class DomainLeagueData(val leagues: List<ResponseObject>?) //TODO remove usless classes, using responobject ok!
 
-data class Parameters(val season: String?)
-
-class Error()
-
-data class Paging(val current:Int?,
-                  val total:Int?)
-
-data class ResponseObject(val league: League?,
-                          val country: Country?,
-                          val seasons: List<Season>?)
+data class LeagueData(val league: League?,
+                      val country: Country?,
+                      val seasons: List<Season>?)
 
 data class League(val id: Int?,
                   val name:String?,

@@ -2,7 +2,7 @@ package com.footballfan.ui.leaguelist
 
 import co.zsmb.rainbowcake.withIOContext
 import com.footballfan.domain.FootballInteractor
-import com.footballfan.domain.models.DomainLeagueData
+import com.footballfan.domain.models.football.DomainLeagueData
 import com.footballfan.networkutil.SomeResult
 import com.footballfan.ui.leaguelist.model.LeagueData
 import com.footballfan.ui.leaguelist.model.LeagueUiData

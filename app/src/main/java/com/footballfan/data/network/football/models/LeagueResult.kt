@@ -1,12 +1,23 @@
-package com.footballfan.domain.models
+package com.footballfan.data.network.football.models
 
-import com.footballfan.data.network.football.ResponseObject
 
-data class DomainLeagueData(val leagues: List<ResponseObject>?) //TODO wrong class or delet things below and have only this line????
+data class LeagueResult(val get: String?,
+                        val parameters: Parameters,
+                        val errors: List<Error>?,
+                        val results: Int?,
+                        val paging: Paging?,
+                        val response: List<ResponseObject>)
 
-data class LeagueData(val league: League?,
-                  val country: Country?,
-                  val seasons: List<Season>?)
+data class Parameters(val season: String?)
+
+class Error()
+
+data class Paging(val current:Int?,
+                  val total:Int?)
+
+data class ResponseObject(val league: League?,
+                          val country: Country?,
+                          val seasons: List<Season>?)
 
 data class League(val id: Int?,
                   val name:String?,
