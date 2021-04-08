@@ -1,8 +1,6 @@
 package com.footballfan.data.network.football
 
-import com.footballfan.domain.models.football.DomainFixtureData
-import com.footballfan.domain.models.football.DomainLeagueData
-import com.footballfan.domain.models.football.DomainRoundsData
+import com.footballfan.domain.models.football.*
 import com.footballfan.networkutil.NetworkResponse
 import com.footballfan.networkutil.executeNetworkCall
 
@@ -32,6 +30,42 @@ class FootballDataSource @Inject constructor(private val footballApi: FootballAp
                 footballApi.getFixtures(season,leagueID).let {
                     DomainFixtureData(
                             fixtures = it.response
+                    )
+                }
+            }
+
+    suspend fun getEvents(fixtureID: String) : NetworkResponse<DomainEventsData> =
+            executeNetworkCall {
+                footballApi.getEvents(fixtureID).let {
+                    DomainEventsData(
+                            events = it.response
+                    )
+                }
+            }
+
+    suspend fun getStats(fixtureID: String) : NetworkResponse<DomainStatsData> =
+            executeNetworkCall {
+                footballApi.getStats(fixtureID).let {
+                    DomainStatsData(
+                            stats = it.response
+                    )
+                }
+            }
+
+    suspend fun getLineUps(fixtureID: String) : NetworkResponse<DomainLineUpsData> =
+            executeNetworkCall {
+                footballApi.getLineUps(fixtureID).let {
+                    DomainLineUpsData(
+                            lineups = it.response
+                    )
+                }
+            }
+
+    suspend fun getHeadtohead( teamIDs: String) : NetworkResponse<DomainH2HData> =
+            executeNetworkCall {
+                footballApi.getHeadtohead(teamIDs).let {
+                    DomainH2HData(
+                            h2h = it.response
                     )
                 }
             }
