@@ -48,7 +48,7 @@ class DetailMainFragment : RainbowCakeFragment<DetailMainViewState,DetailMainVie
     override fun render(viewState: DetailMainViewState) {
         when(viewState){
             Initial -> {
-                testText.text = leagueID.toString()
+                Log.d("asd",leagueID.toString() + "hello from detail")
             }
         }
     }

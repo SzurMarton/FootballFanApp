@@ -9,11 +9,9 @@ import javax.inject.Inject
 class FootballDataSource @Inject constructor(private val footballApi: FootballApi){
     suspend fun getLeagues(season: Int) : NetworkResponse<DomainLeagueData> =
             executeNetworkCall{
-                footballApi.getLeagues(season).let { it ->
-                    DomainLeagueData(
-                            leagues = it.response
-                    )
-                }
+                DomainLeagueData(
+                        leagues = footballApi.getLeagues(season).response
+                )
             }
 
     suspend fun getRounds(season: Int,leagueID: Int) : NetworkResponse<DomainRoundsData> =
@@ -27,20 +25,68 @@ class FootballDataSource @Inject constructor(private val footballApi: FootballAp
 
     suspend fun getFixtures(season: Int,leagueID: Int) : NetworkResponse<DomainFixtureData> =
             executeNetworkCall {
-                footballApi.getFixtures(season,leagueID).let {
-                    DomainFixtureData(
-                            fixtures = it.response
-                    )
-                }
+                DomainFixtureData(
+                        fixtures = footballApi.getFixtures(season,leagueID).response?.map {
+                            DomainFixture(
+                                    fixtureID = it.fixture?.id,
+                                    referee = it.fixture?.referee,
+                                    timezone = it.fixture?.timezone,
+                                    timestamp = it.fixture?.timestamp,
+                                    date = it.fixture?.date,
+                                    firstPeriod = it.fixture?.periods?.first,
+                                    secondPeriod = it.fixture?.periods?.second,
+                                    venueID = it.fixture?.venue?.id,
+                                    venueName = it.fixture?.venue?.name,
+                                    venueCity = it.fixture?.venue?.city,
+                                    statusLong = it.fixture?.status?.long,
+                                    statusShort = it.fixture?.status?.short,
+                                    statusElapsed = it.fixture?.status?.elapsed,
+                                    leagueID = it.league?.id,
+                                    leagueName = it.league?.name,
+                                    leagueCountry = it.league?.country,
+                                    leagueFlag = it.league?.flag,
+                                    leagueLogo = it.league?.logo,
+                                    leagueRound = it.league?.round,
+                                    leagueSeason = it.league?.season,
+                                    homeTeamID = it.teams?.home?.id,
+                                    homeTeamName = it.teams?.home?.name,
+                                    homeTeamLogo = it.teams?.home?.logo,
+                                    homeTeamWinner = it.teams?.home?.winner,
+                                    awayTeamID = it.teams?.away?.id,
+                                    awayTeamName = it.teams?.away?.name,
+                                    awayTeamLogo = it.teams?.away?.logo,
+                                    awayTeamWinner = it.teams?.away?.winner,
+                                    homeGoals = it.goals?.home,
+                                    awayGoals = it.goals?.away,
+                                    homeScoreHalftime = it.score?.halftime?.home,
+                                    awayScoreHalftime = it.score?.halftime?.away,
+                                    homeScoreFulltime = it.score?.fulltime?.home,
+                                    awayScoreFulltime = it.score?.fulltime?.away,
+                                    homeScoreExtratime = it.score?.extratime?.home,
+                                    awayScoreExtratime = it.score?.extratime?.away,
+                                    homePenalty = it.score?.penalty?.home,
+                                    awayPenalty = it.score?.penalty?.away
+                            )
+                        }
+                )
             }
 
     suspend fun getEvents(fixtureID: String) : NetworkResponse<DomainEventsData> =
             executeNetworkCall {
-                footballApi.getEvents(fixtureID).let {
-                    DomainEventsData(
-                            events = it.response
-                    )
-                }
+                DomainEventsData(
+                        events = footballApi.getEvents(fixtureID).response?.map {
+                            DomainEvent(
+                                    time = it.time?.elapsed,
+                                    teamID = it.team?.id,
+                                    teamName = it.team?.name,
+                                    logo = it.team?.logo,
+                                    eventPlayerID = it.player?.id,
+                                    eventPlayerName = it.player?.name,
+                                    eventAssistID = it.assist?.id,
+                                    eventAssistName = it.assist?.name
+                            )
+                        }
+                )
             }
 
     suspend fun getStats(fixtureID: String) : NetworkResponse<DomainStatsData> =

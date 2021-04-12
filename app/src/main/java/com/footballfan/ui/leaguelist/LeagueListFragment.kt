@@ -17,7 +17,7 @@ import com.footballfan.ui.leaguelist.model.LeagueUiData
 import kotlinx.android.synthetic.main.fragment_leaguelist.*
 import kotlinx.android.synthetic.main.fragment_news.*
 
-class LeagueListFragment : RainbowCakeFragment<LeagueListViewState,LeagueListViewModel>(), ListAdapter.OnLeagueSelectedListener{
+class LeagueListFragment : RainbowCakeFragment<LeagueListViewState, LeagueListViewModel>(), ListAdapter.OnLeagueSelectedListener {
     override fun provideViewModel() = getViewModelFromFactory()
     override fun getViewResource() = R.layout.fragment_leaguelist
     private lateinit var leagueAdapter: ListAdapter
@@ -51,17 +51,17 @@ class LeagueListFragment : RainbowCakeFragment<LeagueListViewState,LeagueListVie
     }
 
     override fun render(viewState: LeagueListViewState) {
-        when(viewState){
+        when (viewState) {
             is Loading -> viewFlipperLeague.displayedChild = 0
             is LeagueListReady -> {
                 var leauges = viewState.leagueData.leagues
-                if(leagueAdapter.itemCount == 0){
+                if (leagueAdapter.itemCount == 0) {
                     if (leauges != null) {
-                        for (i in leauges.indices){
+                        for (i in leauges.indices) {
                             leagueAdapter.addLeague(leauges[i])
                         }
                     }
-                viewFlipperLeague.displayedChild = 1
+                    viewFlipperLeague.displayedChild = 1
                 }
             }
             is Error -> viewFlipperMain.displayedChild = 2
@@ -69,7 +69,7 @@ class LeagueListFragment : RainbowCakeFragment<LeagueListViewState,LeagueListVie
     }
 
     override fun onLeagueSelected(league: LeagueData?) {
-        Log.d("asd",league?.id.toString())
+        Log.d("asd", league?.id.toString())
         navigator?.add(DetailMainFragment.newInstance(league?.id.toString()))
     }
 }
