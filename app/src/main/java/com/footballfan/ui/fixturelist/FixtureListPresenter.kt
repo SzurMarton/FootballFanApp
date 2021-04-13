@@ -30,7 +30,8 @@ class FixtureListPresenter @Inject constructor(
                             awayTeamName = it.awayTeamName ?: "",
                             awayTeamLogo = it.awayTeamLogo ?: "",
                             awayGoals = it.awayGoals ?: 0,
-                            awayTeamWinner = it.awayTeamWinner ?: false
+                            awayTeamWinner = it.awayTeamWinner ?: false,
+                            leagueRound = it.leagueRound ?: "Null"
                     )
                 }
         )

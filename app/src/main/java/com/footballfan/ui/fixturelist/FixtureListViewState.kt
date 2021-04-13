@@ -9,6 +9,6 @@ object Initial : FixtureListViewState()
 
 object Loading : FixtureListViewState()
 
-data class LeagueListReady(val fixtureListData: FixtureListData) : FixtureListViewState()
+data class FixtureListReady(val fixtureListData: FixtureListData) : FixtureListViewState()
 
 object Error : FixtureListViewState()

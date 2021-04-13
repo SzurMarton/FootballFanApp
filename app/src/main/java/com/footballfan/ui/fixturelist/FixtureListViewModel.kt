@@ -9,8 +9,9 @@ class FixtureListViewModel @Inject constructor(
 ) : RainbowCakeViewModel<FixtureListViewState>(Initial){
     private var fixtureList: FixtureListData? = null
 
-    fun loadFixtures() = execute {
+    fun loadFixtures(leagueId:Int) = execute {
         viewState = Loading
-        //Todo get league id from main fragment
+        fixtureList = fixtureListPresenter.getFixtures(2020,leagueId) //TODO fix season
+        viewState = fixtureList?.let { FixtureListReady(it) } ?: Error
     }
 }

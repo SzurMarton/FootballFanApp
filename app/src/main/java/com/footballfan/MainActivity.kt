@@ -3,6 +3,7 @@ package com.footballfan
 import android.os.Bundle
 import co.zsmb.rainbowcake.navigation.SimpleNavActivity
 import com.footballfan.ui.BlankFragment
+import com.footballfan.ui.fixturelist.FixtureListFragment
 import com.footballfan.ui.leaguedetailmain.DetailMainFragment
 import com.footballfan.ui.leaguelist.LeagueListFragment
 import com.footballfan.ui.login.LoginFragment

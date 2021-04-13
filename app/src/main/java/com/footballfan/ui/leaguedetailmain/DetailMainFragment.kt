@@ -13,6 +13,7 @@ import com.footballfan.R
 import com.footballfan.ui.BlankFragment
 import com.footballfan.ui.ViewPagerAdapter
 import com.footballfan.ui.deatilnews.DetailNewsFragment
+import com.footballfan.ui.fixturelist.FixtureListFragment
 import com.footballfan.ui.leaguelist.LeagueListFragment
 import com.footballfan.ui.news.NewsFragment
 import com.google.android.material.tabs.TabLayoutMediator
@@ -61,7 +62,8 @@ class DetailMainFragment : RainbowCakeFragment<DetailMainViewState,DetailMainVie
 
     private fun initViewPager2WithFragments(view: View) {
         val adapter = ViewPagerAdapter(childFragmentManager, lifecycle)
-        adapter.fragments = arrayListOf(BlankFragment(), BlankFragment(), BlankFragment())
+        val fixtureListFragment = FixtureListFragment.newInstance(leagueID.toString())
+        adapter.fragments = arrayListOf(fixtureListFragment, BlankFragment(), BlankFragment())//TODO newInstance infinite loop
         view.viewpager.adapter = adapter
         val names:Array<String> = arrayOf("fragment1","fragment2","fragmnet3")
         TabLayoutMediator(view.tablayout, view.viewpager){
