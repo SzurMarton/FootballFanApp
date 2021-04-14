@@ -41,4 +41,9 @@ interface FootballApi {
             "x-rapidapi-key: b55807bf0eeb17ba74645dce4c2a4a43")
     @GET("/fixtures/headtohead")
     suspend fun getHeadtohead(@Query("h2h") teamids: String) : FixtureH2HResult
+
+    @Headers("x-rapidapi-host: v3.football.api-sports.io",
+            "x-rapidapi-key: b55807bf0eeb17ba74645dce4c2a4a43")
+    @GET("/standings")
+    suspend fun getStandings(@Query("season") season: Int,@Query("league") leagueid: Int) : StandingsResult
 }

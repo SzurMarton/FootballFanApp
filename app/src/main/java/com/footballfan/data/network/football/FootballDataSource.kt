@@ -3,6 +3,7 @@ package com.footballfan.data.network.football
 import com.footballfan.domain.models.football.*
 import com.footballfan.networkutil.NetworkResponse
 import com.footballfan.networkutil.executeNetworkCall
+import retrofit2.http.Query
 
 import javax.inject.Inject
 
@@ -116,4 +117,7 @@ class FootballDataSource @Inject constructor(private val footballApi: FootballAp
                 }
             }
 
+    suspend fun getStanding(season: Int, leagueid: Int){
+        //TODO implemetn
+    }
 }
