@@ -38,12 +38,12 @@ class DetailMainFragment : RainbowCakeFragment<DetailMainViewState,DetailMainVie
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initArgs()
+        //initArgs()
     }
 
     private fun initArgs() {
         leagueID = requireArguments().requireString(ARG_LEAGUE_ID).toInt()
-        Log.d("asd",leagueID.toString())
+        Log.d("asd",leagueID.toString() + "hello from initargs detail")
     }
 
     override fun render(viewState: DetailMainViewState) {
@@ -55,6 +55,7 @@ class DetailMainFragment : RainbowCakeFragment<DetailMainViewState,DetailMainVie
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        initArgs()
         val view = inflater.inflate(R.layout.fragment_leaguemaindetails, container, false)
         initViewPager2WithFragments(view)
         return view

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
+import co.zsmb.rainbowcake.base.ViewModelScope
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import co.zsmb.rainbowcake.navigation.extensions.applyArgs
 import co.zsmb.rainbowcake.navigation.extensions.requireString
@@ -18,14 +19,14 @@ class FixtureListFragment : RainbowCakeFragment<FixtureListViewState,FixtureList
     companion object {
         private const val ARG_LEAGUE_ID = "ARG_LEAGUE_ID"
 
-        fun newInstance(leagueID: String): DetailMainFragment {
-            return DetailMainFragment().applyArgs {
+        fun newInstance(leagueID: String): FixtureListFragment {
+            return FixtureListFragment().applyArgs {
                 putString(ARG_LEAGUE_ID, leagueID)
             }
         }
     }
 
-    private var leagueID: Int = 78
+    private var leagueID: Int = 0
     private lateinit var fixtureListAdapter: FixtureListAdapter
     override fun provideViewModel() = getViewModelFromFactory()
     override fun getViewResource() = R.layout.fragment_fixturelist
@@ -45,7 +46,7 @@ class FixtureListFragment : RainbowCakeFragment<FixtureListViewState,FixtureList
 
     private fun initArgs() {
         leagueID = requireArguments().requireString(FixtureListFragment.ARG_LEAGUE_ID).toInt()
-        Log.d("asd",leagueID.toString())
+        Log.d("asd",leagueID.toString() + "hello from fixturelist initargs")
     }
 
     override fun render(viewState: FixtureListViewState) {

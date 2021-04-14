@@ -61,8 +61,8 @@ class LeagueListFragment : RainbowCakeFragment<LeagueListViewState, LeagueListVi
                             leagueAdapter.addLeague(leauges[i])
                         }
                     }
-                    viewFlipperLeague.displayedChild = 1
                 }
+                viewFlipperLeague.displayedChild = 1
             }
             is Error -> viewFlipperMain.displayedChild = 2
         }
