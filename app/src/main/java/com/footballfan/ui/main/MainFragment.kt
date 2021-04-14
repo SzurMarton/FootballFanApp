@@ -9,8 +9,8 @@ import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import com.footballfan.R
 import com.footballfan.ui.BlankFragment
 import com.footballfan.ui.ViewPagerAdapter
-import com.footballfan.ui.leaguelist.LeagueListFragment
-import com.footballfan.ui.news.NewsFragment
+import com.footballfan.ui.football.leaguelist.LeagueListFragment
+import com.footballfan.ui.news.newslist.NewsFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_main.view.*
 

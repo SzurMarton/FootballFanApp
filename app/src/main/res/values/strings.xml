@@ -6,4 +6,6 @@
     <string name="mainTabLeagues">Leagues</string>
     <string name="mainTabNews">News</string>
     <string name="mainTabForum">Forum</string>
+    <string name="matches">Matches</string>
+    <string name="leagueTable">League Table</string>
 </resources>
