@@ -117,7 +117,43 @@ class FootballDataSource @Inject constructor(private val footballApi: FootballAp
                 }
             }
 
-    suspend fun getStanding(season: Int, leagueid: Int){
-        //TODO implemetn
-    }
+    suspend fun getStanding(season: Int, leagueid: Int) : NetworkResponse<DomainStandingsData> =
+            executeNetworkCall {
+                footballApi.getStandings(season, leagueid).response.first().let { it ->
+                    DomainStandingsData(
+                            leagueID = it.league.id,
+                            leagueLogo = it.league.logo,
+                            leagueName = it.league.name,
+                            season = it.league.season,
+                            standings = it.league.standings.first().map {
+                                DomainStandings(
+                                        teamID = it.team.id,
+                                        teamLogo = it.team.logo,
+                                        teamName = it.team.name,
+                                        drawAllGames = it.all.draw,
+                                        goalsAllGamesFor = it.all.goals.`for`,
+                                        goalsAllGamesAgainst = it.all.goals.against,
+                                        loseAllGames = it.all.lose,
+                                        winAllGames = it.all.win,
+                                        drawAwayGames = it.away.draw,
+                                        goalsAwayGamesAgainst = it.away.goals.against,
+                                        goalsAwayGamesFor = it.away.goals.`for`,
+                                        loseAwayGames = it.away.lose,
+                                        winAwayGames = it.away.win,
+                                        drawHomeGames = it.home.draw,
+                                        winHomeGames = it.home.win,
+                                        loseHomeGames = it.home.lose,
+                                        goalsHomeGamesAgainst = it.home.goals.against,
+                                        goalsHomeGamesFor = it.home.goals.`for`,
+                                        playedAllGames = it.all.played,
+                                        playedAwayGames = it.away.played,
+                                        playedHomeGames = it.home.played,
+                                        goalsDiff = it.goalsDiff,
+                                        points = it.points
+                                //TODO handle leagues where List<List> has more than 1 object
+                                )
+                            }
+                    )
+                }
+            }
 }

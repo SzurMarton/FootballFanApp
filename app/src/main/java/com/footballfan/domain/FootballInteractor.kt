@@ -87,4 +87,15 @@ class FootballInteractor @Inject constructor(
             }
         }
     }
+
+    suspend fun getStandings(season: Int,leagueID: Int) : DataTransferResponse<DomainStandingsData> {
+        return when(val response = footballDataSource.getStanding(season,leagueID)){
+            is NetworkResult -> {
+                DataTransferSuccess(response.result)
+            }
+            else -> {
+                NetworkUnavailableNotCached
+            }
+        }
+    }
 }

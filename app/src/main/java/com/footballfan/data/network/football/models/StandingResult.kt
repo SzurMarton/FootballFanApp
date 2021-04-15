@@ -1,5 +1,6 @@
 package com.footballfan.data.network.football.models
 
+//TODO ?
 data class StandingsResult(
         val errors: List<Any>,
         val `get`: String,
@@ -50,7 +51,7 @@ data class Standing(
 
 data class All(
         val draw: Int,
-        val goalsAll: GoalsAll,
+        val goals: GoalsAll,
         val lose: Int,
         val played: Int,
         val win: Int
