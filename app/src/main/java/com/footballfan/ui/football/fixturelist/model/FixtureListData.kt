@@ -10,7 +10,7 @@ data class FixtureListUiData(
         val awayTeamName:String,
         val awayTeamLogo:String,
         val awayTeamWinner:Boolean,
-        val homeGoals:Int,
-        val awayGoals:Int,
+        val homeGoals:String,
+        val awayGoals:String,
         val leagueRound:String
 )

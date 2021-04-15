@@ -25,9 +25,18 @@ class FixtureListAdapter : ListAdapter<FixtureListUiData, FixtureListAdapter.Fix
         holder.fixture = fixture
         holder.homeTeamName.text = fixture.homeTeamName
         holder.awayTeamName.text = fixture.awayTeamName
-        holder.homeTeamScore.text = fixture.homeGoals.toString()
-        holder.awayTeamScore.text = fixture.awayGoals.toString()
-        //TODO handle not yet played
+        if(fixture.homeGoals.equals("null")){
+            holder.homeTeamScore.text = "-"
+        }
+        else{
+            holder.homeTeamScore.text = fixture.homeGoals
+        }
+        if(fixture.awayGoals.equals("null")){
+            holder.awayTeamScore.text = "-"
+        }
+        else{
+            holder.awayTeamScore.text = fixture.awayGoals
+        }
         Glide.with(holder.homeTeamLogo)
                 .load(fixture.homeTeamLogo)
                 .into(holder.homeTeamLogo)

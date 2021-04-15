@@ -25,11 +25,11 @@ class FixtureListPresenter @Inject constructor(
                             fixtureID = it.fixtureID ?: 0,
                             homeTeamName = it.homeTeamName ?: "",
                             homeTeamLogo = it.homeTeamLogo ?: "",
-                            homeGoals = it.homeGoals ?: 0,
+                            homeGoals = it.homeGoals.toString() ?: "-",
                             homeTeamWinner = it.homeTeamWinner ?: false,
                             awayTeamName = it.awayTeamName ?: "",
                             awayTeamLogo = it.awayTeamLogo ?: "",
-                            awayGoals = it.awayGoals ?: 0,
+                            awayGoals = it.awayGoals.toString() ?: "-",//TODO if null set to -
                             awayTeamWinner = it.awayTeamWinner ?: false,
                             leagueRound = it.leagueRound ?: "Null"
                     )
