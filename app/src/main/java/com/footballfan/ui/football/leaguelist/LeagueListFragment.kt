@@ -67,7 +67,7 @@ class LeagueListFragment : RainbowCakeFragment<LeagueListViewState, LeagueListVi
 
     override fun onLeagueSelected(league: LeagueData?) {
         Log.d("asd", league?.id.toString())
-        navigator?.add(DetailMainFragment.newInstance(league?.id.toString()))
+        navigator?.add(DetailMainFragment.newInstance(league?.id.toString(),league?.name ?: "", league?.logo ?: ""))
     }
 }
 

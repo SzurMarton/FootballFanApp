@@ -3,9 +3,11 @@ package com.footballfan.ui.football.fixturelist
 import co.zsmb.rainbowcake.withIOContext
 import com.footballfan.domain.FootballInteractor
 import com.footballfan.domain.models.football.DomainFixtureData
+import com.footballfan.domain.models.football.DomainRoundsData
 import com.footballfan.networkutil.SomeResult
 import com.footballfan.ui.football.fixturelist.model.FixtureListData
 import com.footballfan.ui.football.fixturelist.model.FixtureListUiData
+import com.footballfan.ui.football.fixturelist.model.RoundsData
 import javax.inject.Inject
 
 class FixtureListPresenter @Inject constructor(
@@ -14,6 +16,13 @@ class FixtureListPresenter @Inject constructor(
     suspend fun getFixtures(season: Int,leagueID: Int) : FixtureListData? = withIOContext {
         when(val response = footballInteractor.getFixtures(season, leagueID)){
             is SomeResult -> response.result.toFixtureUiData()
+            else -> null
+        }
+    }
+
+    suspend fun getRounds(season: Int,leagueID: Int) : RoundsData? = withIOContext {
+        when(val response = footballInteractor.getRounds(season, leagueID)){
+            is SomeResult -> response.result.toRoundsData()
             else -> null
         }
     }
@@ -34,6 +43,12 @@ class FixtureListPresenter @Inject constructor(
                             leagueRound = it.leagueRound ?: "Null"
                     )
                 }
+        )
+    }
+
+    private fun DomainRoundsData.toRoundsData() : RoundsData{
+        return RoundsData(
+                rounds = rounds
         )
     }
 }

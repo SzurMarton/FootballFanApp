@@ -7,19 +7,45 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
+import co.zsmb.rainbowcake.navigation.extensions.applyArgs
+import co.zsmb.rainbowcake.navigation.extensions.requireString
+import com.bumptech.glide.Glide
 import com.footballfan.R
+import com.footballfan.ui.football.fixturelist.FixtureListFragment
 import com.footballfan.ui.football.leaguestandings.model.UiStandingsAll
 import com.footballfan.ui.football.leaguestandings.model.UiStandingsAway
 import com.footballfan.ui.football.leaguestandings.model.UiStandingsHome
+import kotlinx.android.synthetic.main.fragment_fixturelist.*
 import kotlinx.android.synthetic.main.fragment_standings.*
+import kotlinx.android.synthetic.main.fragment_standings.spinner
+import kotlinx.android.synthetic.main.fragment_standings.teamLogo
+import kotlinx.android.synthetic.main.fragment_standings.teamName
 
-class StandingsFragment : RainbowCakeFragment<StandingsViewState,StandingsViewModel>(), AdapterView.OnItemSelectedListener, StandingsListALLAdapter.Listener, SatndingsListaAwayAdapter.Listener,StandingsListHomeAdapter.Listener{
+class StandingsFragment : RainbowCakeFragment<StandingsViewState, StandingsViewModel>(), AdapterView.OnItemSelectedListener, StandingsListALLAdapter.Listener, SatndingsListaAwayAdapter.Listener, StandingsListHomeAdapter.Listener {
+    companion object {
+        private const val ARG_LEAGUE_ID = "ARG_LEAGUE_ID"
+        private const val ARG_LEAGUE_NAME = "ARG_LEAGUE_NAME"
+        private const val ARG_LEAGUE_LOGO = "ARG_LEAGUE_LOGO"
+
+        fun newInstance(leagueID: String, leagueName: String, leagueLogo: String): StandingsFragment { //TODO shift to parentscope viewmodel and get data from there
+            return StandingsFragment().applyArgs {
+                putString(ARG_LEAGUE_ID, leagueID)
+                putString(ARG_LEAGUE_NAME, leagueName)
+                putString(ARG_LEAGUE_LOGO, leagueLogo)
+            }
+        }
+    }
+
+    private var leagueID: Int = 0
+    private lateinit var leagueName: String
+    private lateinit var leagueLogo: String
+
     override fun provideViewModel() = getViewModelFromFactory()
     override fun getViewResource() = R.layout.fragment_standings
     private lateinit var standingsAdapter: StandingsListALLAdapter
     private lateinit var standingsListHomeAdapter: StandingsListHomeAdapter
     private lateinit var satndingsListaAwayAdapter: SatndingsListaAwayAdapter
-    private var options : ArrayList<String> = arrayListOf("All","Home","Away") //TODO extract to string resource
+    private var options: ArrayList<String> = arrayListOf("All", "Home", "Away") //TODO extract to string resource
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         standingsAdapter = StandingsListALLAdapter()
@@ -33,17 +59,29 @@ class StandingsFragment : RainbowCakeFragment<StandingsViewState,StandingsViewMo
         StandingsListAwayRecyclerView.adapter = satndingsListaAwayAdapter
 
         spinner.adapter =
-                activity?.let { ArrayAdapter<String>(it,android.R.layout.simple_spinner_item,options) }
+                activity?.let { ArrayAdapter<String>(it, android.R.layout.simple_spinner_item, options) }
         spinner.onItemSelectedListener = this
+
+        initArgs()
+        teamName.text = leagueName
+        Glide.with(teamLogo)
+                .load(leagueLogo)
+                .into(teamLogo)
+    }
+
+    private fun initArgs() {
+        leagueID = requireArguments().requireString(ARG_LEAGUE_ID).toInt()
+        leagueName = requireArguments().requireString(ARG_LEAGUE_NAME)
+        leagueLogo = requireArguments().requireString(ARG_LEAGUE_LOGO)
     }
 
     override fun onStart() {
         super.onStart()
-        viewModel.loadStandings(2020,78)
+        viewModel.loadStandings(2020, leagueID)
     }
 
     override fun render(viewState: StandingsViewState) {
-        when(viewState){
+        when (viewState) {
             Loading -> viewFlipperStandingsMain.displayedChild = 0
             is StandingsListReady -> {
                 val standingsAll = viewState.standingsData.standingsAll
@@ -60,15 +98,15 @@ class StandingsFragment : RainbowCakeFragment<StandingsViewState,StandingsViewMo
     }
 
     override fun onTeamClicked(team: UiStandingsAll) {
-        TODO("Not yet implemented")
+        TODO("Navigate to team details")
     }
 
     override fun onTeamAwayClicked(team: UiStandingsAway) {
-        TODO("Not yet implemented")
+        TODO("Navigate to team details")
     }
 
     override fun onTeamHomeClicked(team: UiStandingsHome) {
-        TODO("Not yet implemented")
+        TODO("Navigate to team details")
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -77,13 +115,13 @@ class StandingsFragment : RainbowCakeFragment<StandingsViewState,StandingsViewMo
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         val item = options[position]
-        if(item == "All"){
+        if (item == "All") {
             viewFlipperStandingsList.displayedChild = 0
         }
-        if(item == "Home"){
+        if (item == "Home") {
             viewFlipperStandingsList.displayedChild = 1
         }
-        if(item == "Away"){
+        if (item == "Away") {
             viewFlipperStandingsList.displayedChild = 2
         }
     }
