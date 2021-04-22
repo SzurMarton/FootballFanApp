@@ -9,8 +9,10 @@ import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import co.zsmb.rainbowcake.navigation.extensions.applyArgs
 import co.zsmb.rainbowcake.navigation.extensions.requireString
+import co.zsmb.rainbowcake.navigation.navigator
 import com.bumptech.glide.Glide
 import com.footballfan.R
+import com.footballfan.ui.BlankFragment
 import com.footballfan.ui.football.fixturelist.model.FixtureListUiData
 import kotlinx.android.synthetic.main.fragment_fixturelist.*
 import kotlinx.android.synthetic.main.fragment_fixturelist.spinner
@@ -33,6 +35,7 @@ class FixtureListFragment : RainbowCakeFragment<FixtureListViewState,FixtureList
     }
 
     private var leagueID: Int = 0
+    private var rounds :List<String>? =null
     private lateinit var leagueName: String
     private lateinit var leagueLogo: String
     private lateinit var fixtureListAdapter: FixtureListAdapter
@@ -59,21 +62,20 @@ class FixtureListFragment : RainbowCakeFragment<FixtureListViewState,FixtureList
         viewModel.loadFixturesData(leagueID)
     }
 
-    private fun initArgs() {
+    private fun initArgs() { //TODO replace with parent scope viewmodel
         leagueID = requireArguments().requireString(FixtureListFragment.ARG_LEAGUE_ID).toInt()
         leagueName = requireArguments().requireString(ARG_LEAGUE_NAME)
         leagueLogo = requireArguments().requireString(ARG_LEAGUE_LOGO)
-        Log.d("asd",leagueID.toString() + "hello from fixturelist initargs")
     }
 
     override fun render(viewState: FixtureListViewState) {
         when(viewState){
             is Loading -> viewFlipperFixtureList.displayedChild = 0
             is DataReady -> {
-                var rounds = viewState.rounds.rounds
-                spinner.adapter = activity?.let { ArrayAdapter<String>(it, android.R.layout.simple_spinner_item, ArrayList<String>(rounds)) }
-                var fixtures = viewState.fixtureListData.fixtures
-                Log.d("asd",fixtures?.size.toString())
+                rounds = viewState.rounds.rounds
+                val options = ArrayList<String>(rounds)
+                spinner.adapter = activity?.let { ArrayAdapter<String>(it, android.R.layout.simple_spinner_item, options ) }
+                val fixtures = viewState.fixtureListData.fixtures
                 fixtureListAdapter.submitList(fixtures)
                 viewFlipperFixtureList.displayedChild = 1
             }
@@ -82,16 +84,19 @@ class FixtureListFragment : RainbowCakeFragment<FixtureListViewState,FixtureList
     }
 
     override fun onFixtureClicked(fixture: FixtureListUiData) {
-        TODO("Navigate to fixturedetails")
+        navigator?.add(BlankFragment())
+        //TODO Navigate to fixturedetails
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
-        TODO("Not yet implemented")
+        //display all fixtures
+        fixtureListAdapter.submitList(viewModel.getAllFixtures())
+        fixtureListAdapter.notifyDataSetChanged()
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        //TODO filter fixture list
-        Log.d("asd","sda")
+        val list = viewModel.getFilteredFixtures(rounds?.get(position))
+        fixtureListAdapter.submitList(list)
+        fixtureListAdapter.notifyDataSetChanged()
     }
-
 }

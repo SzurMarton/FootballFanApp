@@ -119,7 +119,7 @@ class FootballDataSource @Inject constructor(private val footballApi: FootballAp
 
     suspend fun getStanding(season: Int, leagueid: Int) : NetworkResponse<DomainStandingsData> =
             executeNetworkCall {
-                footballApi.getStandings(season, leagueid).response.first().let { it ->
+                footballApi.getStandings(season, leagueid).response.first().let { it ->  //TODO handle cups and ucl like competitions list in list like response object?
                     DomainStandingsData(
                             leagueID = it.league.id,
                             leagueLogo = it.league.logo,

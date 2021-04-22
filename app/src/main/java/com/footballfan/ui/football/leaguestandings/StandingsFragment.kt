@@ -80,6 +80,7 @@ class StandingsFragment : RainbowCakeFragment<StandingsViewState, StandingsViewM
         viewModel.loadStandings(2020, leagueID)
     }
 
+    //TODO Handle cups and leagues with group stages
     override fun render(viewState: StandingsViewState) {
         when (viewState) {
             Loading -> viewFlipperStandingsMain.displayedChild = 0
