@@ -11,6 +11,8 @@ import com.footballfan.ui.auth.login.LoginViewModel
 import com.footballfan.ui.main.MainViewModel
 import com.footballfan.ui.news.newslist.NewsViewModel
 import com.footballfan.ui.auth.register.RegisterViewModel
+import com.footballfan.ui.football.fixturedetailmain.FixtureDetailMainFragment
+import com.footballfan.ui.football.fixturedetailmain.FixtureDetailMainViewModel
 import com.footballfan.ui.football.leaguestandings.StandingsViewModel
 import dagger.Binds
 import dagger.Module
@@ -69,4 +71,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(StandingsViewModel::class)
     abstract fun bindStandingsViewModel(standingsViewModel: StandingsViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FixtureDetailMainViewModel::class)
+    abstract fun bindFixtureDetailMainViewModel(fixtureDetailMainViewModel: FixtureDetailMainViewModel) : ViewModel
 }

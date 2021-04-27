@@ -13,6 +13,7 @@ import co.zsmb.rainbowcake.navigation.navigator
 import com.bumptech.glide.Glide
 import com.footballfan.R
 import com.footballfan.ui.BlankFragment
+import com.footballfan.ui.football.fixturedetailmain.FixtureDetailMainFragment
 import com.footballfan.ui.football.fixturelist.model.FixtureListUiData
 import kotlinx.android.synthetic.main.fragment_fixturelist.*
 import kotlinx.android.synthetic.main.fragment_fixturelist.spinner
@@ -84,8 +85,8 @@ class FixtureListFragment : RainbowCakeFragment<FixtureListViewState,FixtureList
     }
 
     override fun onFixtureClicked(fixture: FixtureListUiData) {
-        navigator?.add(BlankFragment())
-        //TODO Navigate to fixturedetails
+        Log.d("asd",fixture.fixtureID.toString())
+        navigator?.add(FixtureDetailMainFragment.newInstance(fixture.homeGoals,fixture.awayGoals,fixture.awayTeamLogo,fixture.homeTeamLogo))
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
