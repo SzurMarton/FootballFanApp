@@ -1,7 +1,7 @@
 package com.footballfan.domain
 
 import com.footballfan.data.network.news.NewsDataSource
-import com.footballfan.domain.models.DomainNewsData
+import com.footballfan.domain.models.news.DomainNewsData
 import com.footballfan.networkutil.DataTransferResponse
 import com.footballfan.networkutil.DataTransferSuccess
 import com.footballfan.networkutil.NetworkResult

@@ -3,12 +3,15 @@ package com.footballfan.di
 import androidx.lifecycle.ViewModel
 import co.zsmb.rainbowcake.dagger.ViewModelKey
 import com.footballfan.ui.BlankViewModel
-import com.footballfan.ui.deatilnews.DetailNewsViewModel
-import com.footballfan.ui.leaguelist.LeagueListViewModel
-import com.footballfan.ui.login.LoginViewModel
+import com.footballfan.ui.news.deatilnews.DetailNewsViewModel
+import com.footballfan.ui.football.fixturelist.FixtureListViewModel
+import com.footballfan.ui.football.leaguedetailmain.DetailMainViewModel
+import com.footballfan.ui.football.leaguelist.LeagueListViewModel
+import com.footballfan.ui.auth.login.LoginViewModel
 import com.footballfan.ui.main.MainViewModel
-import com.footballfan.ui.news.NewsViewModel
-import com.footballfan.ui.register.RegisterViewModel
+import com.footballfan.ui.news.newslist.NewsViewModel
+import com.footballfan.ui.auth.register.RegisterViewModel
+import com.footballfan.ui.football.leaguestandings.StandingsViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -51,4 +54,19 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(LeagueListViewModel::class)
     abstract fun bindLeagueListViewModel(leagueListViewModel: LeagueListViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailMainViewModel::class)
+    abstract fun bindDetailMainViewModel(deatailMainViewModel: DetailMainViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FixtureListViewModel::class)
+    abstract fun bindFixtureListViewModel(fixtureListViewModel: FixtureListViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(StandingsViewModel::class)
+    abstract fun bindStandingsViewModel(standingsViewModel: StandingsViewModel) : ViewModel
 }
