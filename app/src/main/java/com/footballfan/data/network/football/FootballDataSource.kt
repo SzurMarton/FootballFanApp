@@ -84,7 +84,9 @@ class FootballDataSource @Inject constructor(private val footballApi: FootballAp
                         eventPlayerID = it.player?.id,
                         eventPlayerName = it.player?.name,
                         eventAssistID = it.assist?.id,
-                        eventAssistName = it.assist?.name
+                        eventAssistName = it.assist?.name,
+                        type = it.type,
+                        detail = it.detail
                     )
                 }
             )

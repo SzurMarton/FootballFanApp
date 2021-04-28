@@ -12,5 +12,7 @@ data class DomainEvent(
         val eventPlayerID: Int?,
         val eventPlayerName: String?,
         val eventAssistID: Int?,
-        val eventAssistName: String?
+        val eventAssistName: String?,
+        val type: String?,
+        val detail:String?
 )

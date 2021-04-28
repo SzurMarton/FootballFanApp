@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.footballfan.R
 import com.footballfan.ui.BlankFragment
 import com.footballfan.ui.ViewPagerAdapter
+import com.footballfan.ui.football.events.EventsFragment
 import com.footballfan.ui.football.fixturelist.FixtureListFragment
 import com.footballfan.ui.football.fixturelist.FixtureListViewState
 import com.footballfan.ui.football.leaguelist.LeagueListFragment
@@ -87,9 +88,10 @@ class FixtureDetailMainFragment : RainbowCakeFragment<FixtureDetailMainViewState
     private fun initViewPager2WithFragments(view: View){
         val adapter = ViewPagerAdapter(childFragmentManager, lifecycle)
         val lineupFragment = LineupFragment.newInstance(fixtureID)
-        adapter.fragments = arrayListOf(BlankFragment(), lineupFragment, BlankFragment())
+        val eventFragment = EventsFragment.newInstance(fixtureID)
+        adapter.fragments = arrayListOf(eventFragment, lineupFragment, BlankFragment())
         view.viewpager.adapter = adapter
-        val names:Array<String> = arrayOf("asd","Lineups","adsa")
+        val names:Array<String> = arrayOf("Events","Lineups","adsa")
         TabLayoutMediator(view.tablayout, view.viewpager){
             tab, position ->
             tab.text = names[position]
