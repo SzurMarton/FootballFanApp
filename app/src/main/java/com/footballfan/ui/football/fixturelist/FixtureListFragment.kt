@@ -86,7 +86,7 @@ class FixtureListFragment : RainbowCakeFragment<FixtureListViewState,FixtureList
 
     override fun onFixtureClicked(fixture: FixtureListUiData) {
         Log.d("asd",fixture.fixtureID.toString())
-        navigator?.add(FixtureDetailMainFragment.newInstance(fixture.homeGoals,fixture.awayGoals,fixture.awayTeamLogo,fixture.homeTeamLogo))
+        navigator?.add(FixtureDetailMainFragment.newInstance(fixture.homeGoals,fixture.awayGoals,fixture.awayTeamLogo,fixture.homeTeamLogo,fixture.fixtureID.toString()))
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
