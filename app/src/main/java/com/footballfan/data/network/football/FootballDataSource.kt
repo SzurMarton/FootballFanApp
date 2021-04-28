@@ -92,14 +92,22 @@ class FootballDataSource @Inject constructor(private val footballApi: FootballAp
             )
         }
 
-    suspend fun getStats(fixtureID: String) : NetworkResponse<DomainStatsData> =
-            executeNetworkCall {
-                footballApi.getStats(fixtureID).let {
-                    DomainStatsData(
-                            stats = it.response
+    suspend fun getStats(fixtureID: String): NetworkResponse<DomainStatsData> =
+        executeNetworkCall {
+            DomainStatsData(
+                stats = footballApi.getStats(fixtureID).response?.map { it ->
+                    DomainStat(
+                        teamID = it.team.id,
+                        statistics = it.statistics?.map {
+                            StatObject(
+                                type = it.type,
+                                value = it.type
+                            )
+                        }
                     )
                 }
-            }
+            )
+        }
 
     suspend fun getLineUps(fixtureID: String): NetworkResponse<DomainLineUpsData> =
         executeNetworkCall {

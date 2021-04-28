@@ -14,8 +14,10 @@ import com.footballfan.ui.auth.register.RegisterViewModel
 import com.footballfan.ui.football.events.EventsViewModel
 import com.footballfan.ui.football.fixturedetailmain.FixtureDetailMainFragment
 import com.footballfan.ui.football.fixturedetailmain.FixtureDetailMainViewModel
+import com.footballfan.ui.football.headtohead.HeadToHeadViewModel
 import com.footballfan.ui.football.leaguestandings.StandingsViewModel
 import com.footballfan.ui.football.lineups.LineupViewModel
+import com.footballfan.ui.football.stats.StatsViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -88,4 +90,15 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(EventsViewModel::class)
     abstract fun bindEventsViewModel(eventsViewModel: EventsViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(StatsViewModel::class)
+    abstract fun bindStatsViewModel(statsViewModel: StatsViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(HeadToHeadViewModel::class)
+    abstract fun bindHeadToHeadViewModel(headViewModel: HeadToHeadViewModel) : ViewModel
+
 }

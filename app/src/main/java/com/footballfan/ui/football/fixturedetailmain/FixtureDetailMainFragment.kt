@@ -18,6 +18,7 @@ import com.footballfan.ui.football.fixturelist.FixtureListViewState
 import com.footballfan.ui.football.leaguelist.LeagueListFragment
 import com.footballfan.ui.football.leaguestandings.StandingsFragment
 import com.footballfan.ui.football.lineups.LineupFragment
+import com.footballfan.ui.football.stats.StatsFragment
 import com.footballfan.ui.news.newslist.NewsFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_fixturedetailmain.*
@@ -89,9 +90,10 @@ class FixtureDetailMainFragment : RainbowCakeFragment<FixtureDetailMainViewState
         val adapter = ViewPagerAdapter(childFragmentManager, lifecycle)
         val lineupFragment = LineupFragment.newInstance(fixtureID)
         val eventFragment = EventsFragment.newInstance(fixtureID)
-        adapter.fragments = arrayListOf(eventFragment, lineupFragment, BlankFragment())
+        val statFragment = StatsFragment.newInstance(fixtureID)
+        adapter.fragments = arrayListOf(eventFragment, lineupFragment, statFragment)
         view.viewpager.adapter = adapter
-        val names:Array<String> = arrayOf("Events","Lineups","adsa")
+        val names:Array<String> = arrayOf("Events","Lineups","Stats")
         TabLayoutMediator(view.tablayout, view.viewpager){
             tab, position ->
             tab.text = names[position]
