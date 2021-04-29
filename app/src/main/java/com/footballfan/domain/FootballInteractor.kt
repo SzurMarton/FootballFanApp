@@ -77,7 +77,7 @@ class FootballInteractor @Inject constructor(
         }
     }
 
-    suspend fun getHeadtohead(teamIDs: String) : DataTransferResponse<DomainH2HData> {
+    suspend fun getHeadToHead(teamIDs: String) : DataTransferResponse<DomainH2HData> {
         return when(val response = footballDataSource.getHeadtohead(teamIDs)){
             is NetworkResult -> {
                 DataTransferSuccess(response.result)

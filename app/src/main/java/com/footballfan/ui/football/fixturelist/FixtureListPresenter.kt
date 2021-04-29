@@ -40,7 +40,9 @@ class FixtureListPresenter @Inject constructor(
                             awayTeamLogo = it.awayTeamLogo ?: "",
                             awayGoals = it.awayGoals.toString() ?: "-",//TODO if null set to -
                             awayTeamWinner = it.awayTeamWinner ?: false,
-                            leagueRound = it.leagueRound ?: "Null"
+                            leagueRound = it.leagueRound ?: "Null",
+                            homeTeamID = it.homeTeamID ?: -1,
+                            awayTeamID = it.awayTeamID ?: -1
                     )
                 }
         )

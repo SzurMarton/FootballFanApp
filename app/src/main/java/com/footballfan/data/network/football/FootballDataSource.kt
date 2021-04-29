@@ -127,11 +127,24 @@ class FootballDataSource @Inject constructor(private val footballApi: FootballAp
 
     suspend fun getHeadtohead(teamIDs: String): NetworkResponse<DomainH2HData> =
         executeNetworkCall {
-            footballApi.getHeadtohead(teamIDs).let {
-                DomainH2HData(
-                    h2h = it.response
-                )
-            }
+            DomainH2HData(
+                    h2hfixtures = footballApi.getHeadtohead(teamIDs).response.map {
+                        DomainH2HFixture(
+                                fixtureID = it.fixture?.id,
+                                date = it.fixture?.date,
+                                homeTeamID = it.teams?.home?.id,
+                                homeTeamName =  it.teams?.home?.name,
+                                homeTeamLogo =  it.teams?.home?.logo,
+                                homeGoals =  it.goals?.home,
+                                homeWinner =  it.teams?.home?.winner,
+                                awayTeamId = it.teams?.away?.id,
+                                awayTeamName =  it.teams?.away?.name,
+                                awayTeamLogo =  it.teams?.away?.logo,
+                                awayGoals =  it.goals?.away,
+                                awayWinner =  it.teams?.away?.winner
+                        )
+                    }
+            )
         }
 
     suspend fun getStanding(season: Int, leagueid: Int): NetworkResponse<DomainStandingsData> =

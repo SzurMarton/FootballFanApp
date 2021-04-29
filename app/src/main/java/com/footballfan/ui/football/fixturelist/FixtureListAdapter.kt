@@ -12,6 +12,13 @@ import com.bumptech.glide.Glide
 import com.footballfan.R
 import com.footballfan.ui.football.fixturelist.model.FixtureListUiData
 import kotlinx.android.synthetic.main.row_fixturelist.view.*
+import kotlinx.android.synthetic.main.row_fixturelist.view.awayScore
+import kotlinx.android.synthetic.main.row_fixturelist.view.awayTeamLogo
+import kotlinx.android.synthetic.main.row_fixturelist.view.awayTeamName
+import kotlinx.android.synthetic.main.row_fixturelist.view.homeScore
+import kotlinx.android.synthetic.main.row_fixturelist.view.homeTeamLogo
+import kotlinx.android.synthetic.main.row_fixturelist.view.homeTeamName
+import kotlinx.android.synthetic.main.row_headtoheaditem.view.*
 
 class FixtureListAdapter : ListAdapter<FixtureListUiData, FixtureListAdapter.FixtureListViewHolder>(FixtureListComparator) {
     var listener: Listener? = null

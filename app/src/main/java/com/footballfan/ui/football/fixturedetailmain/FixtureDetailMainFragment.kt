@@ -15,6 +15,7 @@ import com.footballfan.ui.ViewPagerAdapter
 import com.footballfan.ui.football.events.EventsFragment
 import com.footballfan.ui.football.fixturelist.FixtureListFragment
 import com.footballfan.ui.football.fixturelist.FixtureListViewState
+import com.footballfan.ui.football.headtohead.HeadToHeadFragment
 import com.footballfan.ui.football.leaguelist.LeagueListFragment
 import com.footballfan.ui.football.leaguestandings.StandingsFragment
 import com.footballfan.ui.football.lineups.LineupFragment
@@ -32,14 +33,18 @@ class FixtureDetailMainFragment : RainbowCakeFragment<FixtureDetailMainViewState
         private const val ARG_TEAM_AWAY_LOGO = "ARG_TEAM_AWAY_LOGO"
         private const val ARG_TEAM_HOME_LOGO = "ARG_TEAM_HOME_LOGO"
         private const val ARG_FIXTUREID = "ARG_FIXTUREID"
+        private const val ARG_HomeTEAM_ID = "ARG_HomeTEAM_ID"
+        private const val ARG_AwayTEAM_ID = "ARG_AwayTEAM_ID"
 
-        fun newInstance(homeScore: String,awayScore :String,awayLogo: String,homeLogo: String,fixtureID: String): FixtureDetailMainFragment { //TODO shift to parentscope viewmodel and get data from there
+        fun newInstance(homeScore: String,awayScore :String,awayLogo: String,homeLogo: String,fixtureID: String,homeTeamID: String,awayTeamID: String): FixtureDetailMainFragment { //TODO shift to parentscope viewmodel and get data from there
             return FixtureDetailMainFragment().applyArgs {
                 putString(ARG_TEAM_HOME_SCORE, homeScore)
                 putString(ARG_TEAM_AWAY_SCORE, awayScore)
                 putString(ARG_TEAM_AWAY_LOGO, awayLogo)
                 putString(ARG_TEAM_HOME_LOGO, homeLogo)
                 putString(ARG_FIXTUREID,fixtureID)
+                putString(ARG_HomeTEAM_ID,homeTeamID)
+                putString(ARG_AwayTEAM_ID,awayTeamID)
             }
         }
     }
@@ -49,6 +54,8 @@ class FixtureDetailMainFragment : RainbowCakeFragment<FixtureDetailMainViewState
     private lateinit var teamHomeLogo : String
     private lateinit var teamAwayLogo : String
     private lateinit var fixtureID : String
+    private lateinit var homeTeamID : String
+    private lateinit var awayTeamID : String
 
     private fun initArgs() { //TODO replace with parent scope viewmodel
         teamHomeScore = requireArguments().requireString(ARG_TEAM_HOME_SCORE)
@@ -56,6 +63,8 @@ class FixtureDetailMainFragment : RainbowCakeFragment<FixtureDetailMainViewState
         teamAwayLogo = requireArguments().requireString(ARG_TEAM_AWAY_LOGO)
         teamHomeLogo = requireArguments().requireString(ARG_TEAM_HOME_LOGO)
         fixtureID = requireArguments().requireString(ARG_FIXTUREID)
+        homeTeamID = requireArguments().requireString(ARG_HomeTEAM_ID)
+        awayTeamID = requireArguments().requireString(ARG_AwayTEAM_ID)
     }
 
     override fun provideViewModel() = getViewModelFromFactory()
@@ -91,9 +100,10 @@ class FixtureDetailMainFragment : RainbowCakeFragment<FixtureDetailMainViewState
         val lineupFragment = LineupFragment.newInstance(fixtureID)
         val eventFragment = EventsFragment.newInstance(fixtureID)
         val statFragment = StatsFragment.newInstance(fixtureID)
-        adapter.fragments = arrayListOf(eventFragment, lineupFragment, statFragment)
+        val headToHeadFragment = HeadToHeadFragment.newInstance(homeTeamID,awayTeamID)
+        adapter.fragments = arrayListOf(eventFragment, lineupFragment, statFragment,headToHeadFragment)
         view.viewpager.adapter = adapter
-        val names:Array<String> = arrayOf("Events","Lineups","Stats")
+        val names:Array<String> = arrayOf("Events","Lineups","Stats","HeadToHead")
         TabLayoutMediator(view.tablayout, view.viewpager){
             tab, position ->
             tab.text = names[position]

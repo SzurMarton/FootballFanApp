@@ -15,7 +15,7 @@ class LeagueListPresenter @Inject constructor(
         when (val response = footballInteractor.getLeagues(season)){
             is SomeResult -> response.result.toLeagueUiData()
             else -> null
-    }
+        }
     }
 
     private fun DomainLeagueData.toLeagueUiData() : LeagueUiData{

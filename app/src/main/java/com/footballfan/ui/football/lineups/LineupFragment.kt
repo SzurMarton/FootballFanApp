@@ -46,7 +46,8 @@ class LineupFragment : RainbowCakeFragment<LineupViewState,LineupViewModel>() {
         when (viewState) {
             Loading -> viewFlipperLineup.displayedChild = 0
             is LineupReady -> {
-                lineup.text = viewState.lineups.homeCoachName
+                homeformation.text = viewState.lineups.homeFormation
+                awayformation.text = viewState.lineups.awayFormation
                 viewFlipperLineup.displayedChild = 1
             }
             Error -> viewFlipperLineup.displayedChild = 1
