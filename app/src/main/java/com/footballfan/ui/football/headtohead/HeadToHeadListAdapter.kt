@@ -10,16 +10,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.footballfan.R
-import com.footballfan.ui.football.fixturelist.FixtureListAdapter
-import com.footballfan.ui.football.fixturelist.model.FixtureListUiData
 import com.footballfan.ui.football.headtohead.model.UiH2HFixture
-import kotlinx.android.synthetic.main.row_fixturelist.view.*
-import kotlinx.android.synthetic.main.row_fixturelist.view.awayScore
+import kotlinx.android.synthetic.main.row_fixturelist.view.awayEventType
 import kotlinx.android.synthetic.main.row_fixturelist.view.awayTeamLogo
-import kotlinx.android.synthetic.main.row_fixturelist.view.awayTeamName
-import kotlinx.android.synthetic.main.row_fixturelist.view.homeScore
+import kotlinx.android.synthetic.main.row_fixturelist.view.eventPlayerNameAway
+import kotlinx.android.synthetic.main.row_fixturelist.view.homeEventType
 import kotlinx.android.synthetic.main.row_fixturelist.view.homeTeamLogo
-import kotlinx.android.synthetic.main.row_fixturelist.view.homeTeamName
+import kotlinx.android.synthetic.main.row_fixturelist.view.eventPlayerName
 import kotlinx.android.synthetic.main.row_headtoheaditem.view.*
 
 class HeadToHeadListAdapter : ListAdapter<UiH2HFixture,HeadToHeadListAdapter.HeadToHeadViewHolder>(HeadToHeadComparator) {
@@ -63,11 +60,11 @@ class HeadToHeadListAdapter : ListAdapter<UiH2HFixture,HeadToHeadListAdapter.Hea
 
     inner class HeadToHeadViewHolder(headToHeadView: View) : RecyclerView.ViewHolder(headToHeadView){
         val homeTeamLogo: ImageView = headToHeadView.homeTeamLogo
-        val homeTeamName: TextView = headToHeadView.homeTeamName
-        val homeTeamScore: TextView = headToHeadView.homeScore
+        val homeTeamName: TextView = headToHeadView.eventPlayerName
+        val homeTeamScore: TextView = headToHeadView.homeEventType
         val awayTeamLogo: ImageView = headToHeadView.awayTeamLogo
-        val awayTeamName: TextView = headToHeadView.awayTeamName
-        val awayTeamScore: TextView = headToHeadView.awayScore
+        val awayTeamName: TextView = headToHeadView.eventPlayerNameAway
+        val awayTeamScore: TextView = headToHeadView.awayEventType
         val date: TextView = headToHeadView.date
         var fixture: UiH2HFixture? = null
 

@@ -23,15 +23,18 @@ class LineupFragment : RainbowCakeFragment<LineupViewState,LineupViewModel>() {
     }
 
     private lateinit var fixtureID : String
+    private lateinit var homeLineupAdapter: LineupAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        homeLineupAdapter = LineupAdapter()
+        homeXiRecyclerView.adapter = homeLineupAdapter
         initArgs()
     }
 
     private fun initArgs() { //TODO replace with parent scope viewmodel
         fixtureID = requireArguments().requireString(ARG_FIXTUREID)
-        Log.d("asd", fixtureID)
+       // Log.d("asd", fixtureID)
     }
 
     override fun onStart() {
@@ -46,8 +49,12 @@ class LineupFragment : RainbowCakeFragment<LineupViewState,LineupViewModel>() {
         when (viewState) {
             Loading -> viewFlipperLineup.displayedChild = 0
             is LineupReady -> {
-                homeformation.text = viewState.lineups.homeFormation
-                awayformation.text = viewState.lineups.awayFormation
+                //homeformation.text = viewState.lineups.homeFormation
+                //awayformation.text = viewState.lineups.awayFormation
+                Log.d("asd",viewState.lineups.homeStartXI.size.toString())
+                var asd = viewState.lineups.homeStartXI[4].name
+                Log.d("asd",asd)
+                homeLineupAdapter.submitList(viewState.lineups.homeStartXI)
                 viewFlipperLineup.displayedChild = 1
             }
             Error -> viewFlipperLineup.displayedChild = 1

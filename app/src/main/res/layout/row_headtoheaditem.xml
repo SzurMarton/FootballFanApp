@@ -45,27 +45,27 @@
         app:layout_constraintTop_toBottomOf="@+id/homeTeamLogo" />
 
     <TextView
-        android:id="@+id/homeTeamName"
+        android:id="@+id/eventPlayerName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="5dp"
-        app:layout_constraintEnd_toStartOf="@+id/homeScore"
+        app:layout_constraintEnd_toStartOf="@+id/homeEventType"
         app:layout_constraintStart_toEndOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/awayTeamName"
+        android:id="@+id/eventPlayerNameAway"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/awayScore"
+        app:layout_constraintEnd_toStartOf="@+id/awayEventType"
         app:layout_constraintStart_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/homeTeamName" />
+        app:layout_constraintTop_toBottomOf="@+id/eventPlayerName" />
 
     <TextView
-        android:id="@+id/homeScore"
+        android:id="@+id/homeEventType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="2dp"
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/awayScore"
+        android:id="@+id/awayEventType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -81,7 +81,7 @@
         android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeScore" />
+        app:layout_constraintTop_toBottomOf="@+id/homeEventType" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

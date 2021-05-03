@@ -23,9 +23,12 @@ class EventsFragment : RainbowCakeFragment<EventsViewState,EventsViewModel>() {
     }
 
     private lateinit var fixtureID : String
+    private lateinit var eventAdapter :  EventListAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        eventAdapter = EventListAdapter()
+        eventListRecyclerView.adapter = eventAdapter
         initArgs()
     }
 
@@ -45,10 +48,11 @@ class EventsFragment : RainbowCakeFragment<EventsViewState,EventsViewModel>() {
         when(viewState) {
             Loading -> viewFlipperEvents.displayedChild = 0
             is EventsReady -> {
-                event.text = viewState.events.events.first().type
+                //event.text = viewState.events.events.first().type
+                eventAdapter.submitList(viewState.events.events)
                 viewFlipperEvents.displayedChild = 1
             }
-            Error -> viewFlipperEvents.displayedChild = 1
+            Error -> viewFlipperEvents.displayedChild = 2
         }
     }
 }
