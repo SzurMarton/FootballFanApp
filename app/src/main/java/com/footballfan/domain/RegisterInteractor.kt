@@ -16,8 +16,7 @@ class RegisterInteractor @Inject constructor(){
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithEmail:success")
                     val uid =  FirebaseAuth.getInstance().uid ?: ""
-                    FirebaseDatabase.getInstance().reference.setValue(User(uid, username))
-
+                    FirebaseDatabase.getInstance().getReference("/users").setValue(User(uid, username))
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithEmail:failure", task.exception)

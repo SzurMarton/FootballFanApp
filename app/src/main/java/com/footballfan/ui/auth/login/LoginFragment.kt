@@ -10,6 +10,7 @@ import co.zsmb.rainbowcake.navigation.navigator
 import com.footballfan.R
 import com.footballfan.ui.BlankFragment
 import com.footballfan.ui.auth.register.RegisterFragment
+import com.footballfan.ui.main.MainFragment
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : RainbowCakeFragment<LoginViewState,LoginViewModel>(){
@@ -31,7 +32,7 @@ class LoginFragment : RainbowCakeFragment<LoginViewState,LoginViewModel>(){
 
     override fun onEvent(event: OneShotEvent) {
         when(event){
-            is LoginViewModel.LoginSuccessEvent -> navigator?.add(BlankFragment())
+            is LoginViewModel.LoginSuccessEvent -> navigator?.add(MainFragment())
             is LoginViewModel.LoginFailedEvent -> Toast.makeText(activity, event.errorMessages,Toast.LENGTH_SHORT).show()
         }
     }

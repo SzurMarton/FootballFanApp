@@ -9,6 +9,7 @@ import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import co.zsmb.rainbowcake.navigation.navigator
 import com.footballfan.R
 import com.footballfan.ui.BlankFragment
+import com.footballfan.ui.main.MainFragment
 import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.android.synthetic.main.fragment_register.etEmailAddress
 import kotlinx.android.synthetic.main.fragment_register.etPassword
@@ -31,7 +32,7 @@ class RegisterFragment : RainbowCakeFragment<RegisterViewState,RegisterViewModel
     override fun onEvent(event: OneShotEvent) {
         when(event){
             is RegisterViewModel.InputFailureEvent -> Toast.makeText(activity,"Wrong input",Toast.LENGTH_SHORT).show()
-            is RegisterViewModel.NavigateSuccessEvent -> navigator?.replace(BlankFragment())
+            is RegisterViewModel.NavigateSuccessEvent -> navigator?.replace(MainFragment())
             is RegisterViewModel.NavigateFailureEvent -> Toast.makeText(activity,event.errorMessage,Toast.LENGTH_SHORT).show()
         }
     }

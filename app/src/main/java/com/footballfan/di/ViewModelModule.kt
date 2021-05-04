@@ -11,6 +11,7 @@ import com.footballfan.ui.auth.login.LoginViewModel
 import com.footballfan.ui.main.MainViewModel
 import com.footballfan.ui.news.newslist.NewsViewModel
 import com.footballfan.ui.auth.register.RegisterViewModel
+import com.footballfan.ui.blog.BlogViewModel
 import com.footballfan.ui.football.events.EventsViewModel
 import com.footballfan.ui.football.fixturedetailmain.FixtureDetailMainFragment
 import com.footballfan.ui.football.fixturedetailmain.FixtureDetailMainViewModel
@@ -101,4 +102,8 @@ abstract class ViewModelModule {
     @ViewModelKey(HeadToHeadViewModel::class)
     abstract fun bindHeadToHeadViewModel(headViewModel: HeadToHeadViewModel) : ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(BlogViewModel::class)
+    abstract fun bindBlogViewModel(blogViewModel: BlogViewModel) : ViewModel
 }
