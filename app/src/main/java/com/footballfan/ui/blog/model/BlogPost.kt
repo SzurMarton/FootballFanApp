@@ -1,13 +1,8 @@
 package com.footballfan.ui.blog.model
 
 data class BlogPost(
-        val id: String?,
-        val authorName: String?,
-        val title: String?,
-        val content: String?
-)
-
-data class Response(
-        var posts: List<BlogPost>?,
-        var exception: Exception?
+        val id: String? = null,
+        val authorName: String? = null,
+        val title: String? = null,
+        val content: String? = null
 )

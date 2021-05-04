@@ -13,7 +13,7 @@ class BlogFragment : RainbowCakeFragment<BlogViewState,BlogViewModel>(){
 
     override fun onStart() {
         super.onStart()
-       // viewModel.savePost(BlogPost(4,"asd","4thpost","hellooooooo"))
+        //viewModel.savePost(BlogPost("4","asd","4thpost","hellooooooo"))
         viewModel.getPosts()
     }
 
