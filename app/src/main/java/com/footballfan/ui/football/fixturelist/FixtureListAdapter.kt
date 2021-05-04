@@ -11,7 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.footballfan.R
 import com.footballfan.ui.football.fixturelist.model.FixtureListUiData
-import kotlinx.android.synthetic.main.row_fixturelist.view.*
+import kotlinx.android.synthetic.main.row_fixturelist.view.awayEventType
+import kotlinx.android.synthetic.main.row_fixturelist.view.awayTeamLogo
+import kotlinx.android.synthetic.main.row_fixturelist.view.eventPlayerNameAway
+import kotlinx.android.synthetic.main.row_fixturelist.view.homeEventType
+import kotlinx.android.synthetic.main.row_fixturelist.view.homeTeamLogo
+import kotlinx.android.synthetic.main.row_fixturelist.view.eventPlayerName
 
 class FixtureListAdapter : ListAdapter<FixtureListUiData, FixtureListAdapter.FixtureListViewHolder>(FixtureListComparator) {
     var listener: Listener? = null
@@ -54,11 +59,11 @@ class FixtureListAdapter : ListAdapter<FixtureListUiData, FixtureListAdapter.Fix
 
     inner class FixtureListViewHolder(fixtureView: View) : RecyclerView.ViewHolder(fixtureView) {
         val homeTeamLogo: ImageView = fixtureView.homeTeamLogo
-        val homeTeamName:TextView = fixtureView.homeTeamName
-        val homeTeamScore:TextView = fixtureView.homeScore
+        val homeTeamName:TextView = fixtureView.eventPlayerName
+        val homeTeamScore:TextView = fixtureView.homeEventType
         val awayTeamLogo: ImageView = fixtureView.awayTeamLogo
-        val awayTeamName:TextView = fixtureView.awayTeamName
-        val awayTeamScore:TextView = fixtureView.awayScore
+        val awayTeamName:TextView = fixtureView.eventPlayerNameAway
+        val awayTeamScore:TextView = fixtureView.awayEventType
         var fixture: FixtureListUiData? = null
 
         init {

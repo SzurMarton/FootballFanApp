@@ -3,6 +3,7 @@ package com.footballfan
 import android.os.Bundle
 import co.zsmb.rainbowcake.navigation.SimpleNavActivity
 import com.footballfan.ui.football.leaguestandings.StandingsFragment
+import com.footballfan.ui.football.lineups.LineupFragment
 import com.footballfan.ui.main.MainFragment
 
 class MainActivity : SimpleNavActivity() {

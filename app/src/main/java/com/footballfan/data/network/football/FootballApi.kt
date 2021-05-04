@@ -24,6 +24,11 @@ interface FootballApi {
 
     @Headers("x-rapidapi-host: v3.football.api-sports.io",
             "x-rapidapi-key: b55807bf0eeb17ba74645dce4c2a4a43")
+    @GET("/fixtures")
+    suspend fun getFixture(@Query("id") fixtureID: Int) : FixtureResult
+
+    @Headers("x-rapidapi-host: v3.football.api-sports.io",
+            "x-rapidapi-key: b55807bf0eeb17ba74645dce4c2a4a43")
     @GET("/fixtures/events")
     suspend fun getEvents(@Query("fixture") fixtureid: String?) : FixtureEventsResult
 

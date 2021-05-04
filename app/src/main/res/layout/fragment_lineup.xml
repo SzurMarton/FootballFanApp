@@ -1,0 +1,26 @@
+<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/viewFlipperLineup"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ProgressBar
+        android:id="@+id/loadingIndicator"
+        android:layout_width="86dp"
+        android:layout_height="74dp"
+        android:layout_gravity="center" />
+
+    <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/homeXiRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <TextView
+        android:id="@+id/testText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Error"
+        android:textSize="60dp" />
+
+</ViewFlipper>

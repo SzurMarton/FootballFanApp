@@ -40,5 +40,4 @@ class MainFragment : RainbowCakeFragment<MainViewState,MainViewModel>() {
             tab.text = names[position]
         }.attach()
     }
-
 }
