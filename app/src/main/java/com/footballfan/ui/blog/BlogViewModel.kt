@@ -2,6 +2,7 @@ package com.footballfan.ui.blog
 
 import android.content.ContentValues.TAG
 import android.util.Log
+import co.zsmb.rainbowcake.base.OneShotEvent
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import com.footballfan.domain.RegisterInteractor
 import com.footballfan.ui.blog.model.BlogPost
@@ -27,7 +28,7 @@ class BlogViewModel @Inject constructor(
                 if (snapshot.exists()){
                     for (postSnapshot in snapshot.children){
                         var post = postSnapshot.getValue(BlogPost::class.java)
-                        post?.uid = postSnapshot.key
+                        //post?.uid = postSnapshot.key
                         posts.add(post)
                     }
                     viewState = BlogPostsReady(posts)
@@ -42,6 +43,7 @@ class BlogViewModel @Inject constructor(
     }
 
     fun savePost(blogPost: BlogPost) {
+        //var post = BlogPost
         FirebaseDatabase.getInstance().reference.child("/blogposts").
             push().setValue(blogPost).addOnCompleteListener{ task ->
             if (task.isSuccessful){
@@ -52,4 +54,9 @@ class BlogViewModel @Inject constructor(
             }
         }
     }
+
+    fun showDialog() = execute {
+        postEvent(ShowAddPostDialog)
+    }
+    object ShowAddPostDialog: OneShotEvent
 }

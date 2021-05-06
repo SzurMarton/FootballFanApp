@@ -6,7 +6,7 @@ import com.footballfan.ui.news.newslist.model.UiNews
 
 object BlogComparator : DiffUtil.ItemCallback<BlogPost>(){
     override fun areItemsTheSame(oldItem: BlogPost, newItem: BlogPost): Boolean {
-        return oldItem.uid == newItem.uid
+        return oldItem.title == newItem.title
     }
 
     override fun areContentsTheSame(oldItem: BlogPost, newItem: BlogPost): Boolean {
