@@ -26,7 +26,8 @@ class BlogViewModel @Inject constructor(
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
                     for (postSnapshot in snapshot.children){
-                        val post = postSnapshot.getValue(BlogPost::class.java)
+                        var post = postSnapshot.getValue(BlogPost::class.java)
+                        post?.uid = postSnapshot.key
                         posts.add(post)
                     }
                     viewState = BlogPostsReady(posts)
@@ -41,7 +42,8 @@ class BlogViewModel @Inject constructor(
     }
 
     fun savePost(blogPost: BlogPost) {
-        FirebaseDatabase.getInstance().reference.child("/blogposts").child(blogPost.id.toString()).setValue(blogPost).addOnCompleteListener{ task ->
+        FirebaseDatabase.getInstance().reference.child("/blogposts").
+            push().setValue(blogPost).addOnCompleteListener{ task ->
             if (task.isSuccessful){
                 Log.d("asd","save succesfull")
             }
