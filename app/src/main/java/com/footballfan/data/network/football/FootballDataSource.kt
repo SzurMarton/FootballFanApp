@@ -1,5 +1,6 @@
 package com.footballfan.data.network.football
 
+import com.footballfan.data.network.football.models.PlayerLineUp
 import com.footballfan.domain.models.football.*
 import com.footballfan.networkutil.NetworkResponse
 import com.footballfan.networkutil.executeNetworkCall
@@ -101,7 +102,7 @@ class FootballDataSource @Inject constructor(private val footballApi: FootballAp
                         statistics = it.statistics?.map {
                             StatObject(
                                 type = it.type,
-                                value = it.type
+                                value = it.value
                             )
                         }
                     )

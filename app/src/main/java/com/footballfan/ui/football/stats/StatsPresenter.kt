@@ -29,7 +29,7 @@ class StatsPresenter @Inject constructor(
                     statistics = it.statistics?.map {
                         UiStatObject(
                             type = it.type ?: "",
-                            value = it.value ?: ""
+                            value = it.value ?: "0"
                         )
                     } ?: emptyList()
               )
@@ -40,7 +40,7 @@ class StatsPresenter @Inject constructor(
                     statistics = it.statistics?.map {
                         UiStatObject(
                             type = it.type ?: "",
-                            value = it.value ?: ""
+                            value = it.value ?: "0"
                         )
                     } ?: emptyList()
                 )

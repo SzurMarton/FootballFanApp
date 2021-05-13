@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/viewFlipperStats"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -9,6 +10,628 @@
         android:layout_width="86dp"
         android:layout_height="74dp"
         android:layout_gravity="center" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="SHOTS ON GOAL"
+                            android:textStyle="bold"
+                            android:textSize="10sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:weightSum="10">
+
+                            <TextView
+                                android:id="@+id/homeShotsonGoal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                />
+
+                            <ProgressBar
+                                android:id="@+id/pbSOGHome"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:min="0"
+                                android:progressTint="#29B6F6"
+                                android:scaleX="-1" />
+
+                            <ProgressBar
+                                android:id="@+id/pbSOGAway"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:min="0"
+                                android:progressTint="#AED581" />
+
+                            <TextView
+                                android:id="@+id/awayShotsonGoal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                 />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="SHOTS OFF GOAL"
+                            android:textStyle="bold"
+                            android:textSize="10sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:weightSum="10">
+
+                            <TextView
+                                android:id="@+id/homeShotsoffGoal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                />
+
+                            <ProgressBar
+                                android:id="@+id/pbSOFFHome"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:min="0"
+                                android:progressTint="#29B6F6"
+                                android:scaleX="-1" />
+
+                            <ProgressBar
+                                android:id="@+id/pbSOFFAway"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:min="0"
+                                android:progressTint="#AED581" />
+
+                            <TextView
+                                android:id="@+id/awayShotsoffGoal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="TOTAL SHOTS"
+                            android:textStyle="bold"
+                            android:textSize="10sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:weightSum="10">
+
+                            <TextView
+                                android:id="@+id/homeTotalShots"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                />
+
+                            <ProgressBar
+                                android:id="@+id/pbTotalHome"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:min="0"
+                                android:progressTint="#29B6F6"
+                                android:scaleX="-1" />
+
+                            <ProgressBar
+                                android:id="@+id/pbTotalAway"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:min="0"
+                                android:progressTint="#AED581" />
+
+                            <TextView
+                                android:id="@+id/awayTotalShots"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Blocked Shots"
+                            android:textStyle="bold"
+                            android:textSize="10sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:weightSum="10">
+
+                            <TextView
+                                android:id="@+id/homeBlockedShots"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                />
+
+                            <ProgressBar
+                                android:id="@+id/pbBlockedHome"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:min="0"
+                                android:progressTint="#29B6F6"
+                                android:scaleX="-1" />
+
+                            <ProgressBar
+                                android:id="@+id/pbBlockedAway"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:min="0"
+                                android:progressTint="#AED581" />
+
+                            <TextView
+                                android:id="@+id/awayBlockedShots"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="FOULS"
+                            android:textStyle="bold"
+                            android:textSize="10sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:weightSum="10">
+
+                            <TextView
+                                android:id="@+id/homeFouls"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                />
+
+                            <ProgressBar
+                                android:id="@+id/pbFoulsHome"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:min="0"
+                                android:progressTint="#29B6F6"
+                                android:scaleX="-1" />
+
+                            <ProgressBar
+                                android:id="@+id/pbFoulsAway"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:min="0"
+                                android:progressTint="#AED581" />
+
+                            <TextView
+                                android:id="@+id/awayFouls"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="CORNER KICKS"
+                            android:textStyle="bold"
+                            android:textSize="10sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:weightSum="10">
+
+                            <TextView
+                                android:id="@+id/homeCorners"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                />
+
+                            <ProgressBar
+                                android:id="@+id/pbCornersHome"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:min="0"
+                                android:progressTint="#29B6F6"
+                                android:scaleX="-1" />
+
+                            <ProgressBar
+                                android:id="@+id/pbCornersAway"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:min="0"
+                                android:progressTint="#AED581" />
+
+                            <TextView
+                                android:id="@+id/awayCorners"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Offsides"
+                            android:textStyle="bold"
+                            android:textSize="10sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:weightSum="10">
+
+                            <TextView
+                                android:id="@+id/homeOffsides"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                />
+
+                            <ProgressBar
+                                android:id="@+id/pbOffsidesHome"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:min="0"
+                                android:progressTint="#29B6F6"
+                                android:scaleX="-1" />
+
+                            <ProgressBar
+                                android:id="@+id/pbOffsidesAway"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:min="0"
+                                android:progressTint="#AED581" />
+
+                            <TextView
+                                android:id="@+id/awayOffsides"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Possiesion"
+                            android:textStyle="bold"
+                            android:textSize="10sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:weightSum="10">
+
+                            <TextView
+                                android:id="@+id/homeBallPossession"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                />
+
+                            <ProgressBar
+                                android:id="@+id/pbPossessionHome"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:min="0"
+                                android:progressTint="#29B6F6"
+                                android:scaleX="-1" />
+
+                            <ProgressBar
+                                android:id="@+id/pbPossessionAway"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:min="0"
+                                android:progressTint="#AED581" />
+
+                            <TextView
+                                android:id="@+id/awayBallPossession"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Yellow Cards"
+                            android:textStyle="bold"
+                            android:textSize="10sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:weightSum="10">
+
+                            <TextView
+                                android:id="@+id/homeYellows"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                />
+
+                            <ProgressBar
+                                android:id="@+id/pbYellowsHome"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:min="0"
+                                android:progressTint="#29B6F6"
+                                android:scaleX="-1" />
+
+                            <ProgressBar
+                                android:id="@+id/pbYellowsAway"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:min="0"
+                                android:progressTint="#AED581" />
+
+                            <TextView
+                                android:id="@+id/awayYellows"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Red Cards"
+                            android:textStyle="bold"
+                            android:textSize="10sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:weightSum="10">
+
+                            <TextView
+                                android:id="@+id/homeReds"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                />
+
+                            <ProgressBar
+                                android:id="@+id/pbRedsHome"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:min="0"
+                                android:progressTint="#29B6F6"
+                                android:scaleX="-1" />
+
+                            <ProgressBar
+                                android:id="@+id/pbRedsAway"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:min="0"
+                                android:progressTint="#AED581" />
+
+                            <TextView
+                                android:id="@+id/awayReds"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/stats"

@@ -11,6 +11,7 @@ import com.footballfan.ui.football.lineups.model.UiPlayer
 import kotlinx.android.synthetic.main.row_lineupitem.view.*
 
 class LineupAdapter : ListAdapter<UiPlayer, LineupAdapter.LineupListViewHolder>(LineupComparator) {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LineupListViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.row_lineupitem,parent,false)
         return LineupListViewHolder(view)

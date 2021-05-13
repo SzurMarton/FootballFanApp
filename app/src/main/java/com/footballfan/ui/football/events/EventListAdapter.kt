@@ -16,8 +16,8 @@ class EventListAdapter : ListAdapter<UiEvent, EventListAdapter.EventViewHolder>(
     inner class EventViewHolder(eventView: View) : RecyclerView.ViewHolder(eventView){
         val homeEventType: TextView = eventView.homeEventType
         val eventPlayerName : TextView = eventView.eventPlayerName
-        //val eventPlayerNameAway: TextView = eventView.eventPlayerNameAway
-        //val eventTypeAway: TextView = eventView.awayEventType
+        val eventPlayerNameAway: TextView = eventView.eventPlayerNameAway
+        val eventTypeAway: TextView = eventView.AwayEventType
         var event: UiEvent? = null
     }
 
@@ -27,9 +27,17 @@ class EventListAdapter : ListAdapter<UiEvent, EventListAdapter.EventViewHolder>(
     }
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
+        val homeid = getItem(0)
         val event = getItem(position)
         //TODO get away and home team ids from datasource
-        holder.eventPlayerName.text = event.eventPlayerName
-        holder.homeEventType.text = event.type
+        if (event.teamID == homeid.teamID){
+            holder.eventPlayerName.text = event.eventPlayerName
+            holder.homeEventType.text = event.type
+        }
+        else{
+            holder.eventPlayerNameAway.text = event.eventPlayerName
+            holder.eventTypeAway.text = event.eventPlayerName
+        }
+
     }
 }

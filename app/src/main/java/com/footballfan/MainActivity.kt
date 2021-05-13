@@ -6,6 +6,7 @@ import com.footballfan.ui.auth.login.LoginFragment
 import com.footballfan.ui.blog.BlogFragment
 import com.footballfan.ui.football.leaguestandings.StandingsFragment
 import com.footballfan.ui.football.lineups.LineupFragment
+import com.footballfan.ui.football.stats.StatsFragment
 import com.footballfan.ui.main.MainFragment
 
 class MainActivity : SimpleNavActivity() {
@@ -15,7 +16,7 @@ class MainActivity : SimpleNavActivity() {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            navigator.add(BlogFragment())
+            navigator.add(MainFragment())
         }
     }
 
