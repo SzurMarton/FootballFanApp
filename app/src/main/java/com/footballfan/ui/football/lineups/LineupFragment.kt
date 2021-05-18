@@ -22,28 +22,34 @@ class LineupFragment : RainbowCakeFragment<LineupViewState,LineupViewModel>() {
         }
     }
 
-    //private lateinit var fixtureID : String
+   private lateinit var fixtureID : String
     private lateinit var homeLineupAdapter: LineupAdapter
-    //private lateinit var awayLineupAdapter: LineupAdapter
+    private lateinit var awayLineupAdapter: LineupAdapter
+    private lateinit var homeSubsAdapter: LineupAdapter
+    private lateinit var awaySubsAdapter: LineupAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         homeLineupAdapter = LineupAdapter()
-       // awayLineupAdapter = LineupAdapter()
+        awayLineupAdapter = LineupAdapter()
+        homeSubsAdapter = LineupAdapter()
+        awaySubsAdapter = LineupAdapter()
         homeXiRecyclerView.adapter = homeLineupAdapter
-        //awayXiRecyclerView.adapter = awayLineupAdapter
-       // initArgs()
+        awayXiRecyclerView.adapter = awayLineupAdapter
+        homeSubsRecyclerView.adapter = homeSubsAdapter
+        awaySubsRecyclerView.adapter = awaySubsAdapter
+        initArgs()
     }
 
     private fun initArgs() { //TODO replace with parent scope viewmodel
-        //fixtureID = requireArguments().requireString(ARG_FIXTUREID)
+        fixtureID = requireArguments().requireString(ARG_FIXTUREID)
        // Log.d("asd", fixtureID)
     }
 
     override fun onStart() {
         super.onStart()
-        //viewModel.loadLineup(fixtureID)
-        viewModel.loadLineup("587176")
+        viewModel.loadLineup(fixtureID)
+        //viewModel.loadLineup("587176")
     }
 
     override fun provideViewModel() = getViewModelFromFactory()
@@ -53,10 +59,14 @@ class LineupFragment : RainbowCakeFragment<LineupViewState,LineupViewModel>() {
         when (viewState) {
             Loading -> viewFlipperLineup.displayedChild = 0
             is LineupReady -> {
-                //homeformation.text = viewState.lineups.homeFormation
-                //awayformation.text = viewState.lineups.awayFormation
+                homeFormation.text = viewState.lineups.homeFormation
+                awayFormation.text = viewState.lineups.awayFormation
+                homeCoach.text = viewState.lineups.homeCoachName
+                awayCoach.text = viewState.lineups.awayCoachName
                 homeLineupAdapter.submitList(viewState.lineups.homeStartXI)
-               // awayLineupAdapter.submitList(viewState.lineups.homeStartXI)
+                awayLineupAdapter.submitList(viewState.lineups.awayStartXI)
+                homeSubsAdapter.submitList(viewState.lineups.homeSubstitutes)
+                awaySubsAdapter.submitList(viewState.lineups.awaySubstitutes)
                 viewFlipperLineup.displayedChild = 1
             }
             Error -> viewFlipperLineup.displayedChild = 2

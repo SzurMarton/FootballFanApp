@@ -73,7 +73,7 @@ class DetailMainFragment : RainbowCakeFragment<DetailMainViewState, DetailMainVi
         val standingsFragment = StandingsFragment.newInstance(leagueID.toString(), leagueName, leagueLogo)
         adapter.fragments = arrayListOf(fixtureListFragment, standingsFragment, BlankFragment())
         view.viewpager.adapter = adapter
-        val names: Array<String> = arrayOf(getString(R.string.matches), getString(R.string.leagueTable), "LeagueRelatedforum??")
+        val names: Array<String> = arrayOf(getString(R.string.matches), getString(R.string.leagueTable))
         TabLayoutMediator(view.tablayout, view.viewpager) { tab, position ->
             tab.text = names[position]
         }.attach()

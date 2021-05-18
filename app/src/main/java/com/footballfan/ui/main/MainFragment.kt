@@ -9,6 +9,7 @@ import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import com.footballfan.R
 import com.footballfan.ui.BlankFragment
 import com.footballfan.ui.ViewPagerAdapter
+import com.footballfan.ui.blog.BlogFragment
 import com.footballfan.ui.football.leaguelist.LeagueListFragment
 import com.footballfan.ui.news.newslist.NewsFragment
 import com.google.android.material.tabs.TabLayoutMediator
@@ -32,7 +33,7 @@ class MainFragment : RainbowCakeFragment<MainViewState,MainViewModel>() {
 
     private fun initViewPager2WithFragments(view: View){
         val adapter = ViewPagerAdapter(childFragmentManager, lifecycle)
-        adapter.fragments = arrayListOf(LeagueListFragment(), NewsFragment(), BlankFragment())
+        adapter.fragments = arrayListOf(LeagueListFragment(), NewsFragment(), BlogFragment())
         view.viewpager.adapter = adapter
         val names:Array<String> = arrayOf(getString(R.string.mainTabLeagues),getString(R.string.mainTabNews),getString(R.string.mainTabForum))
         TabLayoutMediator(view.tablayout, view.viewpager){
